@@ -19,6 +19,7 @@ import java.util.List;
 
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
+import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 
@@ -43,8 +44,16 @@ public class CatalogActionBean extends AbstractActionBean {
   private static final String VIEW_ITEM = "/WEB-INF/jsp/catalog/Item.jsp";
   private static final String SEARCH_PRODUCTS = "/WEB-INF/jsp/catalog/SearchProducts.jsp";
 
+
+  //관리자 전용 ActionBean 을 만들어야 될것같기도 하다.
+  private static final String UPDATE_ITEM ="/WEB-INF/jsp/catalog/UpdateItem.jsp";
+  private static final String DELETE_ITEM ="/WEB-INF/jsp/catalog/DeleteItem.jsp";
+  private static final String ADD_ITEM = "/WEB_INF/jsp/catalog/AddItem.jsp"
+
+
   @SpringBean
   private transient CatalogService catalogService;
+  private String workingItemId; //Item id 받아온거
 
   private String keyword;
 
@@ -59,6 +68,10 @@ public class CatalogActionBean extends AbstractActionBean {
   private String itemId;
   private Item item;
   private List<Item> itemList;
+
+  public void setWorkingItemId(String workingItemId) {
+    this.workingItemId = workingItemId;
+  }
 
   public String getKeyword() {
     return keyword;
@@ -196,6 +209,40 @@ public class CatalogActionBean extends AbstractActionBean {
       return new ForwardResolution(SEARCH_PRODUCTS);
     }
   }
+
+
+  /**
+   * Update Item
+   * @return the forward resolution
+   *
+   */
+  public Resolution updateItem(){
+
+
+
+  }
+
+  /**
+   * Delete Item
+   * @return the forward resolution
+   *
+   */
+  public Resolution deleteItem(){
+
+  }
+
+  /**
+   * Add Item
+   * @return the forward resolution
+   *
+   */
+  public Resolution AddItem(){
+
+  }
+
+
+
+
 
   /**
    * Clear.
