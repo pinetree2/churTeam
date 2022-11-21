@@ -41,6 +41,7 @@ public class Account implements Serializable {
   private String zip;
   private String country;
   private String phone;
+  private String auth;
   private String favouriteCategoryId;
   private String languagePreference;
   private boolean listOption;
@@ -151,6 +152,14 @@ public class Account implements Serializable {
 
   public void setPhone(String phone) {
     this.phone = phone;
+  }
+
+  public String getAuth() {
+    return auth;
+  }
+
+  public void setAuth(String auth) {
+    this.auth = auth;
   }
 
   public String getFavouriteCategoryId() {

@@ -88,7 +88,21 @@
 	      </stripes:link>
 	</c:if>
 </c:if> <img align="middle" src="../images/separator.gif" /> <a
-	href="../help.html">?</a></div>
+	href="../help.html">?</a>
+
+	<c:if test="${sessionScope.accountBean != null}">
+		<c:if test="${sessionScope.accountBean.authenticated}">
+			<c:if test="${sessionScope.accountBean.account.auth != '0'}">
+				<stripes:link
+						beanclass="org.mybatis.jpetstore.web.actions.AccountActionBean"
+						event="Dashboard">
+					Admin Dashboard
+				</stripes:link>
+			</c:if>
+		</c:if>
+	</c:if>
+
+</div>
 </div>
 
 <div id="Search">
@@ -128,4 +142,4 @@
 
 </div>
 
-<div id="Content"><stripes:messages />
+<div id="Content"><stripes:messages /></div>

@@ -16,6 +16,14 @@
 
 --%>
 <%@ include file="../common/IncludeTop.jsp"%>
+<div id="WelcomeTest">
+	<div id="WelcomeContentTest"><c:if
+			test="${sessionScope.accountBean.account.auth != '0' }">
+		<c:if test="${sessionScope.accountBean.authenticated}">
+			Welcome ${sessionScope.accountBean.account.country}!
+		</c:if>
+	</c:if></div>
+</div>
 
 <div id="Welcome">
 <div id="WelcomeContent"><c:if
