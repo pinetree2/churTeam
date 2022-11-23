@@ -5,7 +5,7 @@
  : 설계 및 JpetStore 기능 정리
 
 
-![캡처](https://github.com/pinetree2/churTeam/issues/1#issue-1461598720)
+![귀여운고양이](https://user-images.githubusercontent.com/31121731/203537771-f8cf40f9-65cb-4a59-a710-617f3830e5ad.png)
 
 - Clone this repository
 
