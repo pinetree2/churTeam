@@ -18,6 +18,7 @@ package org.mybatis.jpetstore.web.actions;
 import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
@@ -124,7 +125,16 @@ public class CartActionBean extends AbstractActionBean {
   }
 
   public ForwardResolution viewCart() {
-    return new ForwardResolution(VIEW_CART);
+    HttpSession s = context.getRequest().getSession();  //세션 객체
+    String auth = (String)s.getAttribute("principalAuth");  //권한 정보
+    //권한에 따라 분기해주면 됨( 0 : 일반사용자, 1 : 관리자)
+    if(auth.equals("0")){
+      //일반 사용자일 경우
+      return new ForwardResolution(VIEW_CART);
+    }else{
+      //관리자일 경우
+      return new ForwardResolution(CHECK_OUT);
+    }
   }
 
   public ForwardResolution checkOut() {

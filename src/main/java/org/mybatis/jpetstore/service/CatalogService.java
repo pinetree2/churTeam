@@ -17,6 +17,7 @@ package org.mybatis.jpetstore.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.jpetstore.domain.Category;
 import org.mybatis.jpetstore.domain.Item;
@@ -42,6 +43,16 @@ public class CatalogService {
     this.categoryMapper = categoryMapper;
     this.itemMapper = itemMapper;
     this.productMapper = productMapper;
+  }
+
+  /**
+   * Update ItemList.
+   *
+   * @param columns
+   *          the ItemList
+   */
+  public void updateItem(Map<String,Object> columns){
+    itemMapper.updateItemList(columns);
   }
 
   public List<Category> getCategoryList() {

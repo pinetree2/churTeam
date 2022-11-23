@@ -45,7 +45,7 @@
                                       pattern="$#,##0.00" /></td>
                 <td><stripes:link class="Button"
                                   beanclass="org.mybatis.jpetstore.web.actions.CartalogActionBean"
-                                  event="updateItem">
+                                  event="updateItem">https://github.com/pinetree2/churTeam.git
                     <stripes:param name="workingItemId" value="${item.itemId}" />
                     UPDATE
                 </stripes:link></td>

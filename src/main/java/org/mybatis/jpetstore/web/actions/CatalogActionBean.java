@@ -48,7 +48,7 @@ public class CatalogActionBean extends AbstractActionBean {
   //관리자 전용 ActionBean 을 만들어야 될것같기도 하다.
   private static final String UPDATE_ITEM ="/WEB-INF/jsp/catalog/UpdateItem.jsp";
   private static final String DELETE_ITEM ="/WEB-INF/jsp/catalog/DeleteItem.jsp";
-  private static final String ADD_ITEM = "/WEB_INF/jsp/catalog/AddItem.jsp"
+  private static final String ADD_ITEM = "/WEB_INF/jsp/catalog/AddItem.jsp";
 
 
   @SpringBean
@@ -216,29 +216,29 @@ public class CatalogActionBean extends AbstractActionBean {
    * @return the forward resolution
    *
    */
-  public Resolution updateItem(){
-
-
-
-  }
+//  public Resolution updateItem(){
+//
+//
+//
+//  }
 
   /**
    * Delete Item
    * @return the forward resolution
    *
    */
-  public Resolution deleteItem(){
-
-  }
+//  public Resolution deleteItem(){
+//
+//  }
 
   /**
    * Add Item
    * @return the forward resolution
    *
    */
-  public Resolution AddItem(){
-
-  }
+//  public Resolution AddItem(){
+//
+//  }
 
 
 

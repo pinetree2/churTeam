@@ -41,6 +41,8 @@ public class Item implements Serializable {
   private Product product;
   private int quantity;
 
+
+
   public String getItemId() {
     return itemId;
   }
