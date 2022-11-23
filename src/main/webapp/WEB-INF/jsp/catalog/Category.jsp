@@ -42,6 +42,13 @@
 		</tr>
 	</c:forEach>
 </table>
+	<stripes:link
+			class="Button"
+			beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+			event="categoryAPI">
+		<stripes:param name="categoryId" value="${actionBean.category.name}" />
+		View API
+	</stripes:link>
 
 </div>
 
