@@ -93,7 +93,7 @@
 			<c:if test="${sessionScope.accountBean.account.auth.equals('1') }">
 			<stripes:link
 					beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
-					event="viewProduct">
+					event="viewAllProduct">
 				Admin Dashboard
 			</stripes:link>
 			</c:if>

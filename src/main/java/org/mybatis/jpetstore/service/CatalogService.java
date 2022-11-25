@@ -55,6 +55,9 @@ public class CatalogService {
   public Product getProduct(String productId) {
     return productMapper.getProduct(productId);
   }
+  public List<Product> getProductList() {
+    return productMapper.getProductList();
+  }
 
   public List<Product> getProductListByCategory(String categoryId) {
     return productMapper.getProductListByCategory(categoryId);

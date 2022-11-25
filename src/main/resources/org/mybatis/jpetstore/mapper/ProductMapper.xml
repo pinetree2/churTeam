@@ -33,6 +33,13 @@
     WHERE PRODUCTID = #{productId}
   </select>
 
+  <select id="getProductList" resultType="Product">
+    SELECT
+      PRODUCTID,
+      NAME
+    FROM PRODUCT
+  </select>
+
   <select id="getProductListByCategory" resultType="Product">
     SELECT
       PRODUCTID,

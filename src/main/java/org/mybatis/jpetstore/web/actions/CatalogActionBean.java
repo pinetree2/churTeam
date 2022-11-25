@@ -46,6 +46,7 @@ public class CatalogActionBean extends AbstractActionBean {
   private static final String VIEW_CATEGORY = "/WEB-INF/jsp/catalog/Category.jsp";
   private static final String VIEW_PRODUCT = "/WEB-INF/jsp/catalog/Product.jsp";
   private static final String VIEW_ITEM = "/WEB-INF/jsp/catalog/Item.jsp";
+  private static final String VIEW_LIST = "/WEB-INF/jsp/catalog/ProductList.jsp";
   private static final String SEARCH_PRODUCTS = "/WEB-INF/jsp/catalog/SearchProducts.jsp";
 
   @SpringBean
@@ -60,6 +61,7 @@ public class CatalogActionBean extends AbstractActionBean {
   private String productId;
   private Product product;
   private List<Product> productList;
+  private List<Product> allProductList;
 
   private String itemId;
   private Item item;
@@ -113,6 +115,7 @@ public class CatalogActionBean extends AbstractActionBean {
     this.product = product;
   }
 
+  public List<Product> getAllProductList(){return allProductList;}
   public Item getItem() {
     return item;
   }
@@ -175,7 +178,10 @@ public class CatalogActionBean extends AbstractActionBean {
     }
     return new ForwardResolution(VIEW_PRODUCT);
   }
-
+  public ForwardResolution viewAllProduct() {
+    allProductList = catalogService.getProductList();
+    return new ForwardResolution(VIEW_LIST);
+  }
   /**
    * View item.
    *
