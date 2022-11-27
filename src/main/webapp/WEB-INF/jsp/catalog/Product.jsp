@@ -58,7 +58,9 @@
 				event="addItemToCart">
 				<stripes:param name="workingItemId" value="${item.itemId}" />
         	Add to Cart
+
         </stripes:link></td>
+
 		</tr>
 	</c:forEach>
 	<tr>

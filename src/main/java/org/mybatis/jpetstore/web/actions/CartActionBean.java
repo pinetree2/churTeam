@@ -16,6 +16,7 @@
 package org.mybatis.jpetstore.web.actions;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -24,10 +25,10 @@ import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.integration.spring.SpringBean;
-
 import org.mybatis.jpetstore.domain.Cart;
 import org.mybatis.jpetstore.domain.CartItem;
 import org.mybatis.jpetstore.domain.Item;
+import org.mybatis.jpetstore.domain.Product;
 import org.mybatis.jpetstore.service.CatalogService;
 
 /**
@@ -42,13 +43,38 @@ public class CartActionBean extends AbstractActionBean {
 
   private static final String VIEW_CART = "/WEB-INF/jsp/cart/Cart.jsp";
   private static final String CHECK_OUT = "/WEB-INF/jsp/cart/Checkout.jsp";
+  private static final String EDIT_ITEM ="/WEB-INF/jsp/admin/EditItem.jsp";
+
 
   @SpringBean
   private transient CatalogService catalogService;
 
   private Cart cart = new Cart();
   private String workingItemId;
+  private String productId;
+  private List<Item> itemList;
+  private Product product;
 
+  public List<Item> getItemList() {
+    return itemList;
+  }
+
+  public Product getProduct() {
+    return product;
+  }
+  public void setProduct(Product product) {
+    this.product = product;
+  }
+  public void setItemList(List<Item> itemList) {
+    this.itemList = itemList;
+  }
+  public String getProductId() {
+    return productId;
+  }
+
+  public void setProductId(String productId) {
+    this.productId = productId;
+  }
   public Cart getCart() {
     return cart;
   }
@@ -60,6 +86,15 @@ public class CartActionBean extends AbstractActionBean {
   public void setWorkingItemId(String workingItemId) {
     this.workingItemId = workingItemId;
   }
+
+  public ForwardResolution viewEditItem(){
+    if (productId != null) {
+      itemList = catalogService.getItemListByProduct(productId);
+      product = catalogService.getProduct(productId);
+    }
+    return new ForwardResolution(EDIT_ITEM);
+  }
+
 
   /**
    * Adds the item to cart.

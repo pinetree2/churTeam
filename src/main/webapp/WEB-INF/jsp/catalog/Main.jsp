@@ -63,6 +63,7 @@ Lizards, Turtles, Snakes <br />
 	<img src="../images/birds_icon.gif" />
 </stripes:link> <br />
 Exotic Varieties</div>
+
 </div>
 
 <div id="MainImage">

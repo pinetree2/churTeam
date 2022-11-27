@@ -29,6 +29,7 @@
 	<tr>
 		<th>Product ID</th>
 		<th>Name</th>
+		<th>EDIT</th>
 	</tr>
 	<c:forEach var="product" items="${actionBean.productList}">
 		<tr>
@@ -39,9 +40,22 @@
 				${product.productId}
 			</stripes:link></td>
 			<td>${product.name}</td>
+
+			<!--내 페이지 연결해봄 -->
+			<td>
+				<stripes:link class="Button" beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean" event="viewEditItem">
+					<stripes:param name="productId" value="${product.productId}" />
+				 EDIT
+				</stripes:link>
+			</td>
 		</tr>
 	</c:forEach>
+
 </table>
+	<stripes:link class="Button" beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean" event="categoryAPI">
+		<stripes:param name="categoryId" value="${actionBean.category.name}"/>
+		View API
+	</stripes:link>
 
 </div>
 

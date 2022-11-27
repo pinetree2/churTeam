@@ -51,7 +51,7 @@ public class CatalogService {
    * @param columns
    *          the ItemList
    */
-  public void updateItem(Map<String,Object> columns){
+  public void updateItemList(Map<String,Object> columns){
     itemMapper.updateItemList(columns);
   }
 
@@ -86,6 +86,7 @@ public class CatalogService {
     }
     return products;
   }
+  public List<Product> getProductList(){return productMapper.getProductList();}
 
   public List<Item> getItemListByProduct(String productId) {
     return itemMapper.getItemListByProduct(productId);

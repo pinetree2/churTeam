@@ -18,9 +18,9 @@
                    value="${actionBean.product.categoryId}" />
     Return to ${actionBean.product.categoryId}
 </stripes:link></div>
-
 <div id="Catalog">
 
+    <h2>${actionBean.product.name}</h2>
 
     <table>
         <tr>
@@ -28,6 +28,7 @@
             <th>Product ID</th>
             <th>Description</th>
             <th>List Price</th>
+            <th> </th>
             <th>&nbsp;</th>
         </tr>
         <c:forEach var="item" items="${actionBean.itemList}">
@@ -44,27 +45,17 @@
                 <td><fmt:formatNumber value="${item.listPrice}"
                                       pattern="$#,##0.00" /></td>
                 <td><stripes:link class="Button"
-                                  beanclass="org.mybatis.jpetstore.web.actions.CartalogActionBean"
-                                  event="updateItem">https://github.com/pinetree2/churTeam.git
+                                  beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+                                  event="updateItemPage">
                     <stripes:param name="workingItemId" value="${item.itemId}" />
                     UPDATE
                 </stripes:link></td>
                 <td><stripes:link class="Button"
-                                  beanclass="org.mybatis.jpetstore.web.actions.CartalogActionBean"
-                                  event="deleteItem">
+                                  beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+                                  event="viewItem">
                     <stripes:param name="workingItemId" value="${item.itemId}" />
                     DELETE
                 </stripes:link></td>
-            </tr>
-            <tr>
-                <td><stripes:link class="Button"
-                                  beanclass="org.mybatis.jpetstore.web.actions.CartalogActionBean"
-                                  event="addItem">
-                    <stripes:param name="workingItemId" value="${item.itemId}" />
-                    ADD
-                </stripes:link></td>
-
-                </td>
             </tr>
         </c:forEach>
         <tr>
@@ -72,7 +63,13 @@
             </td>
         </tr>
     </table>
-
+    <stripes:link
+            class="Button"
+            beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+            event="categoryAPI">
+        <stripes:param name="categoryId" value="test" />
+        ADD
+    </stripes:link>
 </div>
 
 <%@ include file="../common/IncludeBottom.jsp"%>

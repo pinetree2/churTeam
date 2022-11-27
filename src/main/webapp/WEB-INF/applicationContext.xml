@@ -32,10 +32,10 @@
     <context:property-placeholder location="classpath:application.properties"/>
     <!-- MySql -->
     <bean id = "dataSource" class ="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="${spring.database.class}"/>
-        <property name="url" value="${spring.database.host)"/>
-        <property name="username" value="${spring.database.username}"/>
-        <property name="password" value="${spring.database.password}"/>
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/jpetstore?serverTimezone=UTC"/>
+        <property name="username" value="root"/>
+        <property name="password" value="1234"/>
     </bean>
 
 
