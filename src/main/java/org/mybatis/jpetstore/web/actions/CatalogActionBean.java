@@ -68,18 +68,16 @@ public class CatalogActionBean extends AbstractActionBean {
 
   private String productId;
   private Product product;
-  private Product product2;
-  private Product product3;
 
   private List<Product> productList;
   private List<Product> allProductList;
 
   private String itemId;
   private Item item;
-  private Item item2;
+
 
   private List<Item> itemList;
-  private List<Item> itemList2;
+
 
   public void setWorkingItemId(String workingItemId) {
     this.workingItemId = workingItemId;
@@ -129,14 +127,6 @@ public class CatalogActionBean extends AbstractActionBean {
     return product;
   }
 
-  public Product getProduct2() {
-    return product2;
-  }
-
-  public Product getProduct3() {
-    return product3;
-  }
-
 
   public void setProduct(Product product) {
     this.product = product;
@@ -144,9 +134,6 @@ public class CatalogActionBean extends AbstractActionBean {
 
   public Item getItem() {
     return item;
-  }
-  public Item getItem2() {
-    return item2;
   }
 
   public void setItem(Item item) {
@@ -173,9 +160,6 @@ public class CatalogActionBean extends AbstractActionBean {
 
   public List<Item> getItemList() {
     return itemList;
-  }
-  public List<Item> getItemList2() {
-    return itemList2;
   }
 
 
@@ -227,8 +211,8 @@ public class CatalogActionBean extends AbstractActionBean {
 
 
   public ForwardResolution viewItem2() {
-    item2 = catalogService.getItem(itemId);
-    product3 = item.getProduct();
+    item = catalogService.getItem(itemId);
+    product = item.getProduct();
     return new ForwardResolution(VIEW_ITEM);
   }
 
@@ -265,8 +249,8 @@ public class CatalogActionBean extends AbstractActionBean {
 
   public ForwardResolution viewEditItem(){
     if (productId != null) {
-      itemList2 = catalogService.getItemListByProduct(productId);
-      product2 = catalogService.getProduct(productId);
+      itemList = catalogService.getItemListByProduct(productId);
+      product = catalogService.getProduct(productId);
     }
     return new ForwardResolution(EDIT_ITEM);
   }
@@ -283,7 +267,7 @@ public class CatalogActionBean extends AbstractActionBean {
       itemList = catalogService.getItemListByProduct(productId);
       product = catalogService.getProduct(productId);
       item = catalogService.getItem(itemId);
-      items.Updateitem(item);
+
     }
     return new ForwardResolution(UPDATE_ITEM);
  }
@@ -316,16 +300,12 @@ public class CatalogActionBean extends AbstractActionBean {
    *
    */
   public Resolution updateItem(){
-    if(items.containsItemId(workingItemId)){
 
-      if (productId != null) {
-
-
-
-
-      }
+    if(getItem() !=null){
+      clear();
+      catalogService.setItemUpdate(item);
     }
-    return new ForwardResolution(VIEW_PRODUCT);
+    return new ForwardResolution(VIEW_LIST);
   }
 
 
@@ -362,6 +342,7 @@ public Resolution categoryAPI(){
     productId = null;
     product = null;
     productList = null;
+    allProductList = null;
 
     itemId = null;
     item = null;

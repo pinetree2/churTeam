@@ -78,22 +78,30 @@ public class ItemList implements Serializable {
      * @param , item
      *                 the item id
      */
-    public void Updateitem(Item item) {
+    /*
+    public Item Updateitem(Item Item) {
         //음 건네받을때 Item 객체를 받아오는걸까 모르겠다.
         //HashMap 의 put 메소드를 이용한다.
         //itemId 에 맞는 컬럼(key) 에 맞게 value 를 update시키려면?
-        if (item.getItemId() != null)
-       {
-                Item items = itemMap.get(item.getItemId());
-                items.setAttribute1(item.getAttribute1());
-                items.setListPrice(item.getListPrice());
-                items.setQuantity(item.getQuantity());
-                itemMap.put(items.getItemId(), items);
-                itemList.add(items);
 
 
-            }
+        if (item != null) {
+            Item items = itemMap.get(item.getItemId());
+            items.setAttribute1(item.getAttribute1());
+            items.setListPrice(item.getListPrice());
+            items.setQuantity(item.getQuantity());
+            itemMap.put(items.getItemId(), items);
+            itemList.add(items);
+            return items;
+
+        } else {
+            return null;
         }
+
+
+    }
+    */
+
 
 }
 

@@ -15,9 +15,8 @@
  */
 package org.mybatis.jpetstore.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.math.BigDecimal;
+import java.util.*;
 
 import org.mybatis.jpetstore.domain.Category;
 import org.mybatis.jpetstore.domain.Item;
@@ -98,5 +97,20 @@ public class CatalogService {
 
   public boolean isItemInStock(String itemId) {
     return itemMapper.getInventoryQuantity(itemId) > 0;
+  }
+
+  public void setItemUpdate(Item item) {
+    String itemId = item.getItemId();
+    String attr1 = item.getAttribute1();
+    BigDecimal listprice = item.getListPrice();
+    int quantity = item.getQuantity();
+
+    Map<String, Object> itemMap = new HashMap<>();
+    itemMap.put("itemId",itemId);
+    itemMap.put("attr1",attr1);
+    itemMap.put("listprice",listprice);
+    itemMap.put("quantity",quantity);
+    itemMapper.updateItemList(itemMap);
+
   }
 }

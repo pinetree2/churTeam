@@ -12,11 +12,11 @@
 
 <div id="BackLink"><stripes:link
         beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
-        event="viewCategory">
-    <stripes:param name="categoryId"
-                   value="${actionBean.product.categoryId}" />
-    Return to ${actionBean.product.categoryId}
+        event="viewProduct">
+    <stripes:param name="productId" value="${actionBean.product.productId}" />
+    Return to ${actionBean.product.productId}
 </stripes:link></div>
+
 <div id="Catalog"><stripes:form
         beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
         focus="">
@@ -30,18 +30,19 @@
             <th>List Price</th>
             <th>Quantity</th>
         </tr>
-    <tr>
+
         <td><stripes:link
                 beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
                 event="viewItem">
-            <stripes:param name="itemId" value="${item.itemId}" />
-            ${item.itemId}
+            <stripes:param name="itemId" value="${actionBean.item.itemId}" />
+            ${actionBean.item.itemId}
         </stripes:link></td>
         <td><stripes:text name="item.attribute1" /></td>
         <td><stripes:text name="item.listPrice" /></td>
         <td><stripes:text name="item.quantity" /></td>
     </tr>
-</table>
-    <stripes:submit name="updateItem" value="Submit" /></stripes:form></div>
+
+    </table>
+    <stripes:submit name="Submit" value="updateItem" /></stripes:form></div>
 
 <%@ include file="../common/IncludeBottom.jsp"%>

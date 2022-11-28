@@ -13,10 +13,9 @@
 
 <div id="BackLink"><stripes:link
         beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
-        event="viewCategory">
-    <stripes:param name="categoryId"
-                   value="${actionBean.product.categoryId}" />
-    Return to ${actionBean.product.categoryId}
+        event="viewProduct">
+    <stripes:param name="productId" value="${actionBean.product.productId}" />
+    Return to ${actionBean.product.productId}
 </stripes:link></div>
 <div id="Catalog">
 
@@ -47,13 +46,13 @@
                 <td><stripes:link class="Button"
                                   beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
                                   event="updateItemPage">
-                    <stripes:param name="workingItemId" value="${item.itemId}" />
+                    <stripes:param name="itemId" value="${item.itemId}" />
                     UPDATE
                 </stripes:link></td>
                 <td><stripes:link class="Button"
                                   beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
                                   event="viewItem">
-                    <stripes:param name="workingItemId" value="${item.itemId}" />
+                    <stripes:param name="itemId" value="${item.itemId}" />
                     DELETE
                 </stripes:link></td>
             </tr>

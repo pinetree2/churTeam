@@ -79,23 +79,13 @@
         WHERE ITEMID = #{itemId}
     </update>
 
-    <update id="updateItemList" parameterType="HashMap" >
-        update product AS P, item AS I
+    <update id="updateItemList" >
+        update ITEM AS I, INVENTORY AS IV
         SET
-            P.DESCN = #{itemMap.description},
-            I.LISTPRICE = #{itemMap.listPrice}
-        where P.PRODUCTID = I.PRODUCTID
-
-    </update>
-
-
-    <update id="updateItemList" parameterType="HashMap" >
-        update item AS I, inventory AS IV
-        SET
-            I.ATTR1 = #{itemMap.attribute1},
-            I.LISTPRICE = #{itemMap.listPrice},
-            IV.qty = #{itemMap.quantity}
-        where I.itemid = IV.itemid
+            I.ATTR1 = #{attr1},
+            I.LISTPRICE = #{listPrice},
+            IV.qty = #{quantity}
+        where I.ITEMID = #{itemId} AND IV.itemid = #{itemId}
 
     </update>
 </mapper>

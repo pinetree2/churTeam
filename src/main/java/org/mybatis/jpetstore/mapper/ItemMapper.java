@@ -35,5 +35,7 @@ public interface ItemMapper {
 
   Item getItem(String itemId);
 
-  void updateItemList(Map<String, Object> columns);
+  void updateItemList(Map<String, Object> param);
+
+
 }
