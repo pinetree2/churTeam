@@ -35,7 +35,7 @@ public interface ItemMapper {
 
   Item getItem(String itemId);
 
-  void updateItemList(Map<String, Object> param);
+  void updateItemList(Map<String, Object> itemMap);
 
 
 }

@@ -32,6 +32,7 @@ import org.mybatis.jpetstore.service.CatalogService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * The Class CatalogActionBean.
@@ -300,12 +301,18 @@ public class CatalogActionBean extends AbstractActionBean {
    *
    */
   public Resolution updateItem(){
-
+    HttpSession session = context.getRequest().getSession();
     if(getItem() !=null){
-      clear();
+
       catalogService.setItemUpdate(item);
+      CatalogActionBean catalogActionBean = (CatalogActionBean) session.getAttribute("/actions/Cart.action");
+      catalogActionBean.clear();
+      setMessage("Thank you, your update has been submitted.");
+      return new ForwardResolution(VIEW_LIST);
+    }else{
+      setMessage("An error occurred processing your update.");
+      return new ForwardResolution(ERROR);
     }
-    return new ForwardResolution(VIEW_LIST);
   }
 
 
