@@ -18,10 +18,7 @@ package org.mybatis.jpetstore.web.actions;
 import java.util.List;
 
 import com.google.gson.Gson;
-import net.sourceforge.stripes.action.DefaultHandler;
-import net.sourceforge.stripes.action.ForwardResolution;
-import net.sourceforge.stripes.action.Resolution;
-import net.sourceforge.stripes.action.SessionScope;
+import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 
 import org.mybatis.jpetstore.domain.Category;
@@ -31,6 +28,7 @@ import org.mybatis.jpetstore.service.CatalogService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * The Class CatalogActionBean.
@@ -46,6 +44,7 @@ public class CatalogActionBean extends AbstractActionBean {
   private static final String VIEW_CATEGORY = "/WEB-INF/jsp/catalog/Category.jsp";
   private static final String VIEW_PRODUCT = "/WEB-INF/jsp/catalog/Product.jsp";
   private static final String VIEW_ITEM = "/WEB-INF/jsp/catalog/Item.jsp";
+  private static final String VIEW_EDIT = "/WEB-INF/jsp/catalog/EditItem.jsp";
   private static final String VIEW_LIST = "/WEB-INF/jsp/catalog/ProductList.jsp";
   private static final String SEARCH_PRODUCTS = "/WEB-INF/jsp/catalog/SearchProducts.jsp";
 
@@ -191,6 +190,16 @@ public class CatalogActionBean extends AbstractActionBean {
     item = catalogService.getItem(itemId);
     product = item.getProduct();
     return new ForwardResolution(VIEW_ITEM);
+  }
+
+  public Resolution deleteItem() {
+    catalogService.deleteItem(itemId);
+
+    if (productId != null) {
+      itemList = catalogService.getItemListByProduct(productId);
+      product = catalogService.getProduct(productId);
+    }
+    return new RedirectResolution("/actions/Cart.action?editItem").addParameter("productId",productId);
   }
 
   /**

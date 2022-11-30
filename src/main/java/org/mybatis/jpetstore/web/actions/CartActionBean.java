@@ -158,6 +158,8 @@ public class CartActionBean extends AbstractActionBean {
 
   public ForwardResolution editItem() {
     if (productId != null) {
+      itemList = null;
+      product = null;
       itemList = catalogService.getItemListByProduct(productId);
       product = catalogService.getProduct(productId);
     }
@@ -168,6 +170,8 @@ public class CartActionBean extends AbstractActionBean {
   public void clear() {
     cart = new Cart();
     workingItemId = null;
+    itemList = null;
+    product = null;
   }
 
 }

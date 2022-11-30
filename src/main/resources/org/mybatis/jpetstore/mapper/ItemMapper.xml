@@ -23,7 +23,7 @@
 
   <cache />
 
-  <select id="getItemListByProduct" resultType="Item">
+  <select id="getItemListByProduct" resultType="Item" useCache="false">
     SELECT
       I.ITEMID,
       LISTPRICE,
@@ -78,5 +78,13 @@
       QTY = QTY - #{increment}
     WHERE ITEMID = #{itemId}
   </update>
+
+  <delete id="deleteItem">
+    DELETE FROM ITEM WHERE ITEMID = #{itemId}
+  </delete>
+
+  <delete id="deleteItemStock">
+    DELETE FROM INVENTORY WHERE ITEMID = #{itemId}
+  </delete>
 
 </mapper>

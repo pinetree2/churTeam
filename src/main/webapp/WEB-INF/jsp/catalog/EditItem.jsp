@@ -61,9 +61,10 @@
           UPDATE
         </stripes:link></td>
         <td><stripes:link class="Button"
-                          beanclass="org.mybatis.jpetstore.web.actions.CartActionBean"
-                          event="addItemToCart">
-          <stripes:param name="workingItemId" value="${item.itemId}" />
+                          beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+                          event="deleteItem">
+          <stripes:param name="itemId" value="${item.itemId}" />
+          <stripes:param name="productId" value="${actionBean.product.productId}" />
           DELETE
         </stripes:link></td>
       </tr>
