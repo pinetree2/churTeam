@@ -1,33 +1,52 @@
 <%--
-
-       Copyright 2010-2022 the original author or authors.
-
-       Licensed under the Apache License, Version 2.0 (the "License");
-       you may not use this file except in compliance with the License.
-       You may obtain a copy of the License at
-
-          https://www.apache.org/licenses/LICENSE-2.0
-
-       Unless required by applicable law or agreed to in writing, software
-       distributed under the License is distributed on an "AS IS" BASIS,
-       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-       See the License for the specific language governing permissions and
-       limitations under the License.
-
---%>
-<%--
   Created by IntelliJ IDEA.
   User: dlgot
-  Date: 2022-11-17
-  Time: 오후 4:53
+  Date: 2022-11-25
+  Time: 오후 11:09
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<%@ include file="../common/IncludeTop.jsp"%>
 
-</body>
-</html>
+<jsp:useBean id="catalog"
+             class="org.mybatis.jpetstore.web.actions.CatalogActionBean" />
+
+<div id="BackLink"><stripes:link
+        beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+        event="viewProduct">
+    <stripes:param name="productId" value="${actionBean.product.productId}" />
+    Return to ${actionBean.product.productId}
+</stripes:link></div>
+
+<div id="Catalog"><stripes:form
+        beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+        focus="">
+
+    <h2>${actionBean.product.name}</h2>
+
+    <table>
+        <tr>
+            <th>Item ID</th>
+            <th>Description</th>
+            <th>List Price</th>
+            <th>Quantity</th>
+        </tr>
+
+        <td><stripes:link
+                beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+                event="viewItem">
+            <stripes:param name="item.itemId" value="${actionBean.item.itemId}" />
+            ${actionBean.item.itemId}
+        </stripes:link></td>
+        <td><stripes:text name="item.attribute1" /></td>
+        <td><stripes:text name="item.listPrice" /></td>
+        <td><stripes:text name="item.quantity" /></td>
+        </tr>
+
+
+    </table>
+
+    <stripes:submit name="updateItem" value="Submit" /></stripes:form>
+
+</div>
+
+<%@ include file="../common/IncludeBottom.jsp"%>

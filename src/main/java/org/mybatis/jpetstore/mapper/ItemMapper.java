@@ -37,4 +37,12 @@ public interface ItemMapper {
 
   void deleteItem(String itemId);
   void deleteItemStock(String itemId);
+
+  void updateItem(Item item);
+
+  void updateItemStock(Item item);
+
+  void insertItem(Item item);
+
+  void insertItemStock(Item item);
 }

@@ -45,7 +45,10 @@ public class CatalogActionBean extends AbstractActionBean {
   private static final String VIEW_PRODUCT = "/WEB-INF/jsp/catalog/Product.jsp";
   private static final String VIEW_ITEM = "/WEB-INF/jsp/catalog/Item.jsp";
   private static final String VIEW_EDIT = "/WEB-INF/jsp/catalog/EditItem.jsp";
-  private static final String VIEW_LIST = "/WEB-INF/jsp/catalog/ProductList.jsp";
+  private static final String VIEW_LIST = "/WEB-INF/jsp/admin/ProductList.jsp";
+  private static final String EDIT_ITEM ="/WEB-INF/jsp/admin/EditItem.jsp";
+  private static final String VIEW_ADDFORM ="/WEB-INF/jsp/admin/AddItem.jsp";
+  private static final String UPDATE_ITEM="/WEB-INF/jsp/admin/UpdateItem.jsp";
   private static final String SEARCH_PRODUCTS = "/WEB-INF/jsp/catalog/SearchProducts.jsp";
 
   @SpringBean
@@ -192,14 +195,106 @@ public class CatalogActionBean extends AbstractActionBean {
     return new ForwardResolution(VIEW_ITEM);
   }
 
-  public Resolution deleteItem() {
-    catalogService.deleteItem(itemId);
+  /**
+   * Update Item 버튼 클릭시 해당 페이지로 이동
+   * @return the forward resolution
+   *
+   */
+  public ForwardResolution updateItemPage(){
+    HttpSession s = context.getRequest().getSession();
+    String auth = (String)s.getAttribute("principalAuth");
 
-    if (productId != null) {
-      itemList = catalogService.getItemListByProduct(productId);
-      product = catalogService.getProduct(productId);
+    if(auth == null || auth.equals("0")){
+      return new ForwardResolution(CatalogActionBean.class);
+    }else{
+      if (productId != null) {
+        itemList = catalogService.getItemListByProduct(productId);
+        product = catalogService.getProduct(productId);
+        item = catalogService.getItem(itemId);
+
+      }
+      return new ForwardResolution(UPDATE_ITEM);
     }
-    return new RedirectResolution("/actions/Cart.action?editItem").addParameter("productId",productId);
+
+  }
+
+
+  /**
+   * Insert Item
+   * @return the resolution
+   *
+   */
+  public Resolution addItem(){
+    HttpSession s = context.getRequest().getSession();
+    String auth = (String)s.getAttribute("principalAuth");
+
+    if(auth == null || auth.equals("0")){
+      return new RedirectResolution(CatalogActionBean.class);
+    }else{
+      catalogService.insertItem(item);
+      return new RedirectResolution("/actions/Cart.action?editItem").addParameter("productId",productId);
+    }
+
+  }
+
+  /**
+   * Update Item
+   * @return the resolution
+   *
+   */
+  public Resolution updateItem(){
+    HttpSession s = context.getRequest().getSession();
+    String auth = (String)s.getAttribute("principalAuth");
+
+    if(auth == null || auth.equals("0")){
+      return new RedirectResolution(CatalogActionBean.class);
+    }else {
+      if (productId != null) {
+        catalogService.updateItem(item);
+        item = catalogService.getItem(item.getItemId());
+        itemList = catalogService.getItemListByProduct(productId);
+        product = catalogService.getProduct(productId);
+      }
+      return new RedirectResolution("/actions/Cart.action?editItem").addParameter("productId",productId);
+    }
+  }
+
+  /**
+   * Delete Item
+   * @return the resolution
+   *
+   */
+  public Resolution deleteItem() {
+    HttpSession s = context.getRequest().getSession();
+    String auth = (String)s.getAttribute("principalAuth");
+
+    if(auth == null || auth.equals("0")){
+      return new RedirectResolution(CatalogActionBean.class);
+    }else{
+      catalogService.deleteItem(itemId);
+
+      if (productId != null) {
+        itemList = catalogService.getItemListByProduct(productId);
+        product = catalogService.getProduct(productId);
+      }
+      return new RedirectResolution("/actions/Cart.action?editItem").addParameter("productId",productId);
+    }
+  }
+
+  public ForwardResolution goAddForm(){
+    HttpSession s = context.getRequest().getSession();
+    String auth = (String)s.getAttribute("principalAuth");
+
+    if(auth == null || auth.equals("0")){
+      return new ForwardResolution(CatalogActionBean.class);
+    }else{
+      if(productId != null){
+        itemList = catalogService.getItemListByProduct(productId);
+        product = catalogService.getProduct(productId);
+      }
+      return new ForwardResolution(VIEW_ADDFORM);
+    }
+
   }
 
   /**

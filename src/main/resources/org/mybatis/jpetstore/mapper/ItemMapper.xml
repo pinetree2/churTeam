@@ -87,4 +87,30 @@
     DELETE FROM INVENTORY WHERE ITEMID = #{itemId}
   </delete>
 
+  <update id="updateItem" parameterType="Item" >
+    update ITEM
+    SET
+      ATTR1 = #{attribute1},
+      LISTPRICE = #{listPrice}
+    where ITEMID = #{itemId}
+  </update>
+
+  <update id="updateItemStock" parameterType="Item" >
+    update INVENTORY
+    SET
+      QTY = #{quantity}
+    where ITEMID = #{itemId}
+
+  </update>
+
+  <insert id="insertItem" parameterType="Item" >
+    INSERT INTO ITEM (ITEMID, PRODUCTID, ATTR1, LISTPRICE)
+    VALUES (#{itemId}, #{product.productId}, #{attribute1}, #{listPrice})
+  </insert>
+
+  <insert id="insertItemStock" parameterType="Item" >
+    INSERT INTO INVENTORY (ITEMID, QTY)
+    VALUES (#{itemId}, #{quantity})
+  </insert>
+
 </mapper>

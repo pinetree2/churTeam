@@ -96,4 +96,16 @@ public class CatalogService {
   public boolean isItemInStock(String itemId) {
     return itemMapper.getInventoryQuantity(itemId) > 0;
   }
+
+  @Transactional
+  public void updateItem(Item item) {
+    itemMapper.updateItem(item);
+    itemMapper.updateItemStock(item);
+  }
+
+  @Transactional
+  public void insertItem(Item item) {
+    itemMapper.insertItem(item);
+    itemMapper.insertItemStock(item);
+  }
 }
