@@ -19,6 +19,12 @@
       <tr>
         <th width="10%" style=" text-align: center; color: black">문제</th>
         <th width="30%"  style=" text-align: center; color:black">문제 내용</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+
       </tr >
     </table>
 
@@ -27,43 +33,22 @@
 
     <title> 정답 입력 </title>
     <table>
-      <tr>
-        <td  style=color:black>문제 1 </td>
-        <td>
-          <label><stripes:radio name="example.myRadioValue" value="1"/>1</label>
-          <label><stripes:radio name="myRadioValue" value="2"/>2</label>
-          <label><stripes:radio name="myRadioValue" value="3"/>3</label>
-          <label><stripes:radio name="myRadioValue" value="4"/>4</label>
-          <label><stripes:radio name="myRadioValue" value="5"/>5</label>
+      <c:forEach var="question" items="${actionBean.questionList}">
+
+        <td>${question.contents}</td>
+      <c:forEach var="example" items="${actionBean.exampleList}">
+
+      <td>
+          <label><stripes:radio name="point" value="${example.point}"/>${example.exContents}</label>
         </td>
-      </tr>
-      <tr>
-        <td style=color:black>문제 2 </td>
-        <td> <input type = "radio" id="RDO_02" name = "RDO_02" value = "5"  > 매우 그렇다
-      </tr>
-      <tr>
-        <td style=color:black>문제 3 </td>
-        <td> <input type = "radio" id="RDO_03" name = "RDO_03" value = "5"  > 매우 그렇다
-      </tr>
-      <tr>
-        <td style=color:black>문제 4 </td>
-        <td><input type = "radio" id="RDO_04" name = "RDO_04" value = "5"  > 매우 그렇다
-      </tr>
-      <tr>
-        <td style=color:black>문제 5 </td>
-        <td> <input type = "radio" id="RDO_05" name = "RDO_05" value = "5"  > 매우 그렇다
-      </tr>
-      <tr>
-        <td style=color:black>문제 6 </td>
-        <td><input type = "radio" id="RDO_06" name = "RDO_06" value = "5"  > A
-      </tr>
-      <tr>
-        <td style=color:black>문제 7 </td>
-        <td> <input type = "radio" id="RDO_07" name = "RDO_07" value = "5"  > A
-      </tr>
+      </c:forEach>
+
+        </tr>
+        </c:forEach>
     </table>
 
-      <%--    권한에 따라서 생명윤리 페이지로 돌아갈지 동물선택 페이지로 갈지 정해야 함--%>
+
+  <%--    권한에 따라서 생명윤리 페이지로 돌아갈지 동물선택 페이지로 갈지 정해야 함--%>
     <stripes:link
             class="Button"
             beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"

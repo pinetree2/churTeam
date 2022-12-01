@@ -76,8 +76,8 @@ public class EducationActionBean extends AbstractActionBean{
      * @return the forward resolution
      */
     public ForwardResolution viewTest() {
-        //questionList = educationService.getQuestionList();
-        //exampleList =educationService.getExceptionList();
+        questionList = educationService.getQuestionList();
+        exampleList =educationService.getExceptionList();
         return new ForwardResolution(VIEW_TEST);
     }
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       Copyright 2010-2022 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          https://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.jpetstore.mapper.EducationMapper">
+
+    <cache />
+    <select id="getExampleList" parameterType="Education">
+        SELECT exNo as "번호", exContents as "보기"
+        FROM example
+        WHERE #{choice} = example.type AND example.queNo = #{queNo}
+    </select>
+
+    <select id="getQuestionList" parameterType="Education">
+        SELECT queNo as "문제 번호", contents as "문제"
+        FROM question
+        WHERE #{choice} = question.type
+        ORDER BY queNo asc;
+    </select>
+
+    <select id="getTestResult" parameterType="Education">
+        SELECT userId as "사용자 아이디",
+               et_result as "윤리 교육",
+               fish_result as "물고기 사육",
+               dog_result as "강아지 사육",
+               cat_result as "고양이 사육",
+               rep_result as "파충류 사육",
+               bird_result as "새 사육"
+        FROM testresult
+        WHERE #{사용자 아이디} = testresult.userId
+    </select>
+
+</mapper>
