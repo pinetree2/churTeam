@@ -41,6 +41,8 @@ public class Item implements Serializable {
   private Product product;
   private int quantity;
 
+
+
   public String getItemId() {
     return itemId;
   }
@@ -141,5 +143,6 @@ public class Item implements Serializable {
   public String toString() {
     return "(" + getItemId() + "-" + getProduct().getProductId() + ")";
   }
+
 
 }

@@ -34,7 +34,7 @@
 
 <table>
 	<tr>
-		<th>Item ID</th>
+		<th>Item</th>
 		<th>Product ID</th>
 		<th>Description</th>
 		<th>List Price</th>
@@ -55,7 +55,7 @@
 				pattern="$#,##0.00" /></td>
 			<td><stripes:link class="Button"
 				beanclass="org.mybatis.jpetstore.web.actions.CartActionBean"
-				event="addItemToCart">
+				event="admin">
 				<stripes:param name="workingItemId" value="${item.itemId}" />
         	Add to Cart
         </stripes:link></td>

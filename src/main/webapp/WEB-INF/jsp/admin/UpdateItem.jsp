@@ -22,12 +22,32 @@
   Time: 오후 4:53
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<%@ include file="../common/IncludeTop.jsp"%>
 
-</body>
-</html>
+<jsp:useBean id="catalog"
+             class="org.mybatis.jpetstore.web.actions.CatalogActionBean" />
+
+<div id="BackLink"><stripes:link
+        beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+        event="viewCategory">
+    <stripes:param name="categoryId"
+                   value="${actionBean.product.categoryId}" />
+    Return to ${actionBean.product.categoryId}
+</stripes:link></div>
+
+<div id="Catalog">
+
+
+    <table>
+        <tr>
+            <th>Update Item ID</th>
+            <th>Product ID</th>
+            <th>Description</th>
+            <th>List Price</th>
+            <th>&nbsp;</th>
+        </tr>
+
+    </table>
+</div>
+
+<%@ include file="../common/IncludeBottom.jsp"%>

@@ -30,7 +30,7 @@
 
     <context:property-placeholder location="classpath:application.properties"/>
 
-   <!-- in-memory database and a datasource -->
+    <!-- in-memory database and a datasource -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${spring.database.class}" />
         <property name="url" value="${spring.database.host}" />

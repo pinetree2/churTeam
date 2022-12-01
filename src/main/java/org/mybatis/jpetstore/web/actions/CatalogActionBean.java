@@ -17,10 +17,8 @@ package org.mybatis.jpetstore.web.actions;
 
 import java.util.List;
 
-import com.google.gson.Gson;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
-import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 
@@ -29,11 +27,9 @@ import org.mybatis.jpetstore.domain.Item;
 import org.mybatis.jpetstore.domain.Product;
 import org.mybatis.jpetstore.service.CatalogService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 /**
- * The Class CatalogActionBean.
+ * The Class CatalogAct
+ * ionBean.
  *
  * @author Eduardo Macarron
  */
@@ -47,6 +43,8 @@ public class CatalogActionBean extends AbstractActionBean {
   private static final String VIEW_PRODUCT = "/WEB-INF/jsp/catalog/Product.jsp";
   private static final String VIEW_ITEM = "/WEB-INF/jsp/catalog/Item.jsp";
   private static final String SEARCH_PRODUCTS = "/WEB-INF/jsp/catalog/SearchProducts.jsp";
+
+
 
   @SpringBean
   private transient CatalogService catalogService;
@@ -202,23 +200,6 @@ public class CatalogActionBean extends AbstractActionBean {
     }
   }
 
-  public Resolution categoryAPI() {
-    return new Resolution() {
-      @Override
-      public void execute(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
-        String categoryId = httpServletRequest.getParameter("categoryId");
-        List<Product> prodectList;
-        if(categoryId!=null)
-           prodectList = catalogService.getProductListByCategory(categoryId);
-
-        Gson gson = new Gson();
-        String categoryJson = gson.toJson(productList);
-        httpServletResponse.setCharacterEncoding(("utf-8"));
-        httpServletResponse.setContentType("application/json");
-        httpServletResponse.getWriter().write(categoryJson);
-      }
-    };
-  }
   /**
    * Clear.
    */

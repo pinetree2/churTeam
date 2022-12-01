@@ -15,7 +15,7 @@
        limitations under the License.
 
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%-- <%@ page contentType="text/html;charset=UTF-8" language="java"%> --%>
 <%@ taglib prefix="stripes"
 		   uri="http://stripes.sourceforge.net/stripes.tld"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -27,6 +27,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
+	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<link rel="StyleSheet" href="../css/jpetstore.css" type="text/css"
 		  media="screen" />
 
@@ -54,11 +55,13 @@
 	</div>
 
 	<div id="Menu">
-		<div id="MenuContent"><stripes:link
-				beanclass="org.mybatis.jpetstore.web.actions.CartActionBean"
-				event="viewCart">
-			<img align="middle" name="img_cart" src="../images/cart.gif" />
-		</stripes:link> <img align="middle" src="../images/separator.gif" /> <c:if
+		<div id="MenuContent">
+			<stripes:link
+					beanclass="org.mybatis.jpetstore.web.actions.CartActionBean"
+					event="viewCart">
+				<img align="middle" name="img_cart" src="../images/cart.gif" />
+			</stripes:link>
+			<img align="middle" src="../images/separator.gif" /> <c:if
 				test="${sessionScope.accountBean == null}">
 			<stripes:link
 					beanclass="org.mybatis.jpetstore.web.actions.AccountActionBean"
@@ -90,16 +93,20 @@
 		</c:if> <img align="middle" src="../images/separator.gif" /> <a
 				href="../help.html">?</a>
 			<img align="middle" src="../images/separator.gif" />
-			<c:if test="${sessionScope.accountBean.account.auth.equals('1') }">
 			<stripes:link
 					beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
 					event="viewProduct">
 				Admin Dashboard
 			</stripes:link>
-			</c:if>
+			<img align="middle" src="../images/separator.gif" />
+			<stripes:link
+					beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
+					event="LifeEducation">
+				Education
+			</stripes:link>
+
 		</div>
 	</div>
-
 
 	<div id="Search">
 		<div id="SearchContent"><stripes:form
@@ -138,4 +145,5 @@
 
 </div>
 
-<div id="Content"><stripes:messages />
+<div id="Content">
+<stripes:messages />
