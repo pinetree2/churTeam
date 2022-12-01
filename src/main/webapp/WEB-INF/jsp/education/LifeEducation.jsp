@@ -1,4 +1,5 @@
 <%@ include file="../common/IncludeTop.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <h2>생명윤리교육</h2>
 <form action="">
@@ -48,7 +49,7 @@
 <stripes:link
         class="Button"
         beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
-        event="TEST">
+        event="viewTest">
   테스트 페이지로 이동
 </stripes:link>
 <%@ include file="../common/IncludeBottom.jsp"%>

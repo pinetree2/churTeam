@@ -15,8 +15,8 @@ import java.util.List;
 @SessionScope
 public class EducationActionBean extends AbstractActionBean{
     private static final String MAIN = "/WEB-INF/jsp/education/LifeEducation.jsp";
+    private static final String VIEW_TEST = "/WEB-INF/jsp/education/Test.jsp";
 
-    private static final String VIEW_CATEGORY = "/WEB-INF/jsp/catalog/Category.jsp";
 
     @SpringBean
     private transient EducationService educationService;
@@ -60,13 +60,31 @@ public class EducationActionBean extends AbstractActionBean{
 
 
     /**
-     * View category.
+     * View Question.
      *
      * @return the forward resolution
      */
     public ForwardResolution viewQuestion() {
         questionList = educationService.getQuestionList();
         exampleList =educationService.getExceptionList();
-        return new ForwardResolution(VIEW_CATEGORY);
+        return new ForwardResolution(VIEW_TEST);
     }
+
+    /**
+     * View Question.
+     *
+     * @return the forward resolution
+     */
+    public ForwardResolution viewTest() {
+        //questionList = educationService.getQuestionList();
+        //exampleList =educationService.getExceptionList();
+        return new ForwardResolution(VIEW_TEST);
+    }
+
+    public void clear(){
+        exampleList = null;
+        questionList = null;
+        testResult = null;
+    }
+
 }
