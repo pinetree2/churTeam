@@ -8,9 +8,9 @@ import org.mybatis.jpetstore.domain.TestResult;
 
 public interface EducationMapper {
 
-    List<Example> getExampleList();
+    List<Example> getExampleList(String type);
 
-    List<Question> getQuestionList();
+    List<Question> getQuestionList(String type);
 
     TestResult getTestResult();
 }

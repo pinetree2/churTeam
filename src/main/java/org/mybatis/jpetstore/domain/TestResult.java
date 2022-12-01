@@ -1,6 +1,9 @@
 package org.mybatis.jpetstore.domain;
 
-public class TestResult {
+import java.io.Serializable;
+
+public class TestResult implements Serializable {
+    private static final long serialVersionUID = -2159121673445254651L;
 
     private String userId;
     private boolean et_result;

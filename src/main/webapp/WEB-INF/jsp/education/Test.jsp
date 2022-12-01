@@ -19,11 +19,7 @@
       <tr>
         <th width="10%" style=" text-align: center; color: black">문제</th>
         <th width="30%"  style=" text-align: center; color:black">문제 내용</th>
-        <th>1</th>
-        <th>2</th>
-        <th>3</th>
-        <th>4</th>
-        <th>5</th>
+
 
       </tr >
     </table>
@@ -36,15 +32,15 @@
       <c:forEach var="question" items="${actionBean.questionList}">
 
         <td>${question.contents}</td>
-      <c:forEach var="example" items="${actionBean.exampleList}">
 
       <td>
-          <label><stripes:radio name="point" value="${example.point}"/>${example.exContents}</label>
-        </td>
+        <c:forEach var="example" items="${actionBean.exampleList}">
+          <label><stripes:radio name="point"  value="${example.point}"/>${example.exContents}</label>
+        </c:forEach>
+
+      </td>
       </c:forEach>
 
-        </tr>
-        </c:forEach>
     </table>
 
 

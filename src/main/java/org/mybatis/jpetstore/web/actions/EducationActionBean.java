@@ -24,6 +24,33 @@ public class EducationActionBean extends AbstractActionBean{
     private List<Example> exampleList;
     private List<Question> questionList;
     private TestResult testResult;
+    private String type;
+    private Example example;
+    private Question question;
+
+    public Example getExample() {
+        return example;
+    }
+
+    public void setExample(Example example) {
+        this.example = example;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public List<Example> getExampleList() {
         return exampleList;
@@ -65,8 +92,8 @@ public class EducationActionBean extends AbstractActionBean{
      * @return the forward resolution
      */
     public ForwardResolution viewQuestion() {
-        questionList = educationService.getQuestionList();
-        exampleList =educationService.getExceptionList();
+        questionList = educationService.getQuestionList(type);
+        exampleList =educationService.getExceptionList(type);
         return new ForwardResolution(VIEW_TEST);
     }
 
@@ -76,8 +103,9 @@ public class EducationActionBean extends AbstractActionBean{
      * @return the forward resolution
      */
     public ForwardResolution viewTest() {
-        questionList = educationService.getQuestionList();
-        exampleList =educationService.getExceptionList();
+
+        questionList = educationService.getQuestionList(type);
+        exampleList =educationService.getExceptionList(type);
         return new ForwardResolution(VIEW_TEST);
     }
 

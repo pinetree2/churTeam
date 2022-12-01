@@ -22,29 +22,28 @@
 <mapper namespace="org.mybatis.jpetstore.mapper.EducationMapper">
 
     <cache />
-    <select id="getExampleList" parameterType="Education">
-        SELECT exNo as "번호", exContents as "보기"
+    <select id="getExampleList" resultType="Example">
+        SELECT
+        type,queNo,exNo,point,exContents
         FROM example
-        WHERE #{choice} = example.type AND example.queNo = #{queNo}
+        WHERE type = #{type}
     </select>
 
-    <select id="getQuestionList" parameterType="Education">
-        SELECT queNo as "문제 번호", contents as "문제"
+    <select id="getQuestionList" resultType="Question">
+        SELECT type,queNo,contents
         FROM question
-        WHERE #{choice} = question.type
-        ORDER BY queNo asc;
+        WHERE type = #{type}
     </select>
 
-    <select id="getTestResult" parameterType="Education">
-        SELECT userId as "사용자 아이디",
-               et_result as "윤리 교육",
-               fish_result as "물고기 사육",
-               dog_result as "강아지 사육",
-               cat_result as "고양이 사육",
-               rep_result as "파충류 사육",
-               bird_result as "새 사육"
+    <select id="getTestResult" resultType="TestResult">
+        SELECT userId,
+               et_result,
+               fish_result,
+               dog_result,
+               cat_result,
+               rep_result,
+               bird_result
         FROM testresult
-        WHERE #{사용자 아이디} = testresult.userId
     </select>
 
 </mapper>

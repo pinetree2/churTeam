@@ -21,11 +21,11 @@ public class EducationService {
         this.educationMapper = educationMapper;
     }
 
-    public List<Question> getQuestionList() {
-        return educationMapper.getQuestionList();
+    public List<Question> getQuestionList(String type) {
+        return educationMapper.getQuestionList(type);
     }
 
-    public List<Example> getExceptionList() {return educationMapper.getExampleList();
+    public List<Example> getExceptionList(String type) {return educationMapper.getExampleList(type);
     }
 
     public TestResult getTestResult() {

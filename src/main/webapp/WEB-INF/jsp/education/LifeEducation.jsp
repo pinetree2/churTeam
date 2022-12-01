@@ -50,6 +50,7 @@
         class="Button"
         beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
         event="viewTest">
+  <stripes:param name="type" value="ET" />
   테스트 페이지로 이동
 </stripes:link>
 <%@ include file="../common/IncludeBottom.jsp"%>

@@ -1,6 +1,9 @@
 package org.mybatis.jpetstore.domain;
 
-public class Example {
+import java.io.Serializable;
+
+public class Example implements Serializable {
+    private static final long serialVersionUID = -2159121673445254630L;
 
     private String type;
     private int queNo;
