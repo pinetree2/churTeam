@@ -38,7 +38,7 @@
           <c:set var="exqueNo" value ="${example.queNo}"/>
 
           <c:if test="${queNo eq exqueNo}">
-            <td><label><stripes:radio name="point"  value="${example.point}"/>${example.exContents}</label></td>
+            <td><label><stripes:radio name="point${queNo}"  value="${example.point}"/>${example.exContents}</label></td>
           </c:if>
         </c:forEach>
       </tr>
