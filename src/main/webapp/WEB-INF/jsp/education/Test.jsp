@@ -1,7 +1,7 @@
 <%@ include file="../common/IncludeTop.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<jsp:useBean id="catalog"
+<jsp:useBean id="Education"
              class="org.mybatis.jpetstore.web.actions.EducationActionBean" />
 <div id="Catalog"><stripes:form
         beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
@@ -48,12 +48,7 @@
 
 
   <%--    권한에 따라서 생명윤리 페이지로 돌아갈지 동물선택 페이지로 갈지 정해야 함--%>
-    <stripes:link
-            class="Button"
-            beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
-            event="Result">
-      문제제출
-    </stripes:link></stripes:form>
+    <stripes:submit name="viewResult" value="Submit" /></stripes:form>
   </form>
   </body>
   </html>

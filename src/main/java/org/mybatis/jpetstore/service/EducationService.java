@@ -21,6 +21,9 @@ public class EducationService {
         this.educationMapper = educationMapper;
     }
 
+    public static void updatePoint(int totalPoint) {
+    }
+
     public List<Question> getQuestionList(String type) {
         return educationMapper.getQuestionList(type);
     }

@@ -16,7 +16,8 @@ import java.util.List;
 public class EducationActionBean extends AbstractActionBean{
     private static final String MAIN = "/WEB-INF/jsp/education/LifeEducation.jsp";
     private static final String VIEW_TEST = "/WEB-INF/jsp/education/Test.jsp";
-
+    private static final String VIEW_RESULT ="/WEB-INF/jsp/education/Result.jsp";
+    private static final String VIEW_CHOICE ="/WEB-INF/jsp/education/ChoiceAnimal.jsp";
 
     @SpringBean
     private transient EducationService educationService;
@@ -85,18 +86,6 @@ public class EducationActionBean extends AbstractActionBean{
         return new ForwardResolution(MAIN);
     }
 
-
-    /**
-     * View Question.
-     *
-     * @return the forward resolution
-     */
-    public ForwardResolution viewQuestion() {
-        questionList = educationService.getQuestionList(type);
-        exampleList =educationService.getExceptionList(type);
-        return new ForwardResolution(VIEW_TEST);
-    }
-
     /**
      * View Question.
      *
@@ -107,6 +96,35 @@ public class EducationActionBean extends AbstractActionBean{
         questionList = educationService.getQuestionList(type);
         exampleList =educationService.getExceptionList(type);
         return new ForwardResolution(VIEW_TEST);
+    }
+
+    public ForwardResolution viewResult(){
+
+        /**
+         * 총 점수를 question table에서 queNo의 최대값을 이용해
+         * 반복문을 돌려서 point의 총 합 계산
+         *
+         * 게터세터 이용해서 불러온다음에 계산하면 될듯
+         * totalPoint 를 계산해서
+         * updatePoint라는 쿼리문 적용 시켜서
+         * testResult table에 합불 여부 적용시키면 될듯합니다.
+         *
+         */
+
+        int totalPoint =0;
+        EducationService.updatePoint(totalPoint);
+
+        return new ForwardResolution(VIEW_RESULT);
+
+    }
+
+
+    /**
+     * 동물 선택 화면
+     * */
+
+    public ForwardResolution viewChoice(){
+        return new ForwardResolution(VIEW_CHOICE);
     }
 
     public void clear(){
