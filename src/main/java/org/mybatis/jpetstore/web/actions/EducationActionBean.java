@@ -28,6 +28,18 @@ public class EducationActionBean extends AbstractActionBean{
     private String type;
     private Example example;
     private Question question;
+    private String point1;
+    public String getPoint() {
+        return point1;
+    }
+
+    public String getPoint1() {
+        return point1;
+    }
+
+    public void setPoint1(String point1) {
+        this.point1 = point1;
+    }
 
     public Example getExample() {
         return example;
@@ -92,7 +104,7 @@ public class EducationActionBean extends AbstractActionBean{
      * @return the forward resolution
      */
     public ForwardResolution viewTest() {
-
+        System.out.println("type이다!!!!!!!!!!!!!!!!!!!!!!!!"+type);
         questionList = educationService.getQuestionList(type);
         exampleList =educationService.getExceptionList(type);
         return new ForwardResolution(VIEW_TEST);
@@ -101,17 +113,25 @@ public class EducationActionBean extends AbstractActionBean{
     public ForwardResolution viewResult(){
 
         /**
+         *
+         *
+         * point 는 queNo 마다 달라서 String point1 (이때 1은 queNo)이런식으로 변수지정해서 점수 불러왔음
+         * (queNo는 정해져있으니까 )
+         * 그걸 다시 int 로 바꿔서 점수 계산
+         *
          * 총 점수를 question table에서 queNo의 최대값을 이용해
          * 반복문을 돌려서 point의 총 합 계산
          *
-         * 게터세터 이용해서 불러온다음에 계산하면 될듯
-         * totalPoint 를 계산해서
+         *
          * updatePoint라는 쿼리문 적용 시켜서
          * testResult table에 합불 여부 적용시키면 될듯합니다.
+         *
+         * 링크로는 동물 페이지 못넘어가게.
          *
          */
 
         int totalPoint =0;
+        System.out.println("---------------"+point1);
         EducationService.updatePoint(totalPoint);
 
         return new ForwardResolution(VIEW_RESULT);

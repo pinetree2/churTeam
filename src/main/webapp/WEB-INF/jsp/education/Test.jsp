@@ -3,7 +3,7 @@
 
 <jsp:useBean id="Education"
              class="org.mybatis.jpetstore.web.actions.EducationActionBean" />
-<div id="Catalog"><stripes:form
+<div id="Education"><stripes:form
         beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
         focus="">
   <html>
@@ -49,7 +49,7 @@
 
   <%--    권한에 따라서 생명윤리 페이지로 돌아갈지 동물선택 페이지로 갈지 정해야 함--%>
     <stripes:submit name="viewResult" value="Submit" /></stripes:form>
-  </form>
+
   </body>
   </html>
 </div>

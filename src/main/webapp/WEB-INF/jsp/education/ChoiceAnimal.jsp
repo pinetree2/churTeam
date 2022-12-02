@@ -2,8 +2,10 @@
 
 <jsp:useBean id="Education"
              class="org.mybatis.jpetstore.web.actions.EducationActionBean" />
-
-<form action="">
+<div id="Education"><stripes:form
+        beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
+        focus="">
+  <html>
   <head>
     <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <title>동물선택</title>
@@ -50,19 +52,23 @@
     </stripes:link>
   </div>
   <div>
-    <strong>테스트를 할 동물을 선택해주세요</strong>
-    <label><stripes:radio name="type"  value="BD"/>새</label>
-    <label><stripes:radio name="type"  value="DG"/>개</label>
-    <label><stripes:radio name="type"  value="CT"/>고양이</label>
-    <label><stripes:radio name="type"  value="FI"/>물고기</label>
-    <label><stripes:radio name="type"  value="RT"/>파충류</label>
+
+      <strong>테스트를 할 동물을 선택해주세요</strong>
+      <label><stripes:radio name="type"  value="BD"/>새 </label>
+      <label><stripes:radio name="type"  value="DG"/>개 </label>
+      <label><stripes:radio name="type"  value="CT"/>고양이 </label>
+      <label><stripes:radio name="type"  value="FI"/>물고기 </label>
+      <label><stripes:radio name="type"  value="RT"/>파충류 </label>
+
+
 
   </div>
   <div>
-    <stripes:submit name="viewTest" value="Submit" />
+    <stripes:submit name="viewTest" value="Submit" /></stripes:form>
 
   </div>
-</form>
+  </html>
+</div>
 <%--  <button type = "submit">Submit</button> --%>
 <%@ include file="../common/IncludeBottom.jsp"%>
 

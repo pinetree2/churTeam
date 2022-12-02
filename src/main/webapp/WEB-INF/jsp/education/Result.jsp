@@ -2,7 +2,9 @@
 
 <jsp:useBean id="Education"
              class="org.mybatis.jpetstore.web.actions.EducationActionBean" />
-
+<div id="Education"><stripes:form
+        beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
+        focus="">
 <html>
 <head>
   <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -37,6 +39,7 @@
         event="viewMain">
   메인페이지
 </stripes:link>
+</stripes:form>
 </body>
 </html>
 <%@ include file="../common/IncludeBottom.jsp"%>
