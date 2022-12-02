@@ -17,8 +17,9 @@
   <form action="">
     <table>
       <tr>
-        <th width="10%" style=" text-align: center; color: black">문제</th>
+        <th width="10%" style=" text-align: center; color: black">문제 번호</th>
         <th width="30%"  style=" text-align: center; color:black">문제 내용</th>
+        <th>보기</th>
 
 
       </tr >
@@ -26,19 +27,21 @@
 
       <%--<c:forEach var="" items="${}">
       </c:forEach>--%>
-
     <title> 정답 입력 </title>
     <table>
       <c:forEach var="question" items="${actionBean.questionList}">
-
+      <tr>
+        <td>${question.queNo}</td>
         <td>${question.contents}</td>
-
-      <td>
         <c:forEach var="example" items="${actionBean.exampleList}">
-          <label><stripes:radio name="point"  value="${example.point}"/>${example.exContents}</label>
-        </c:forEach>
+          <c:set var="queNo" value ="${question.queNo}"/>
+          <c:set var="exqueNo" value ="${example.queNo}"/>
 
-      </td>
+          <c:if test="${queNo eq exqueNo}">
+            <td><label><stripes:radio name="point"  value="${example.point}"/>${example.exContents}</label></td>
+          </c:if>
+        </c:forEach>
+      </tr>
       </c:forEach>
 
     </table>
