@@ -12,7 +12,7 @@ public interface EducationMapper {
 
     List<Question> getQuestionList(String type);
 
-    TestResult getTestResult();
+    TestResult getTestResult(String Username);
 
     void updatePoint(TestResult testResult);
 }

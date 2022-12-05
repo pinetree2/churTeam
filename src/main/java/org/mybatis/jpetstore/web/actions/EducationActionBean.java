@@ -206,22 +206,22 @@ public class EducationActionBean extends AbstractActionBean{
 
         switch (type) {
             case "ET":
-                testResult.setEt_result(flag);
+                testResult.setET(flag);
                 break;
             case "DG":
-                testResult.setDog_result(flag);
+                testResult.setDG(flag);
                 break;
             case "CT":
-                testResult.setCat_result(flag);
+                testResult.setCT(flag);
                 break;
             case "FI":
-                testResult.setFish_result(flag);
+                testResult.setFI(flag);
                 break;
             case "BD":
-                testResult.setBird_result(flag);
+                testResult.setBD(flag);
                 break;
             case "RT":
-                testResult.setRep_result(flag);
+                testResult.setRT(flag);
                 break;
         }
 

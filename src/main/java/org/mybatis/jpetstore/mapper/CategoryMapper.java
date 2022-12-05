@@ -29,5 +29,4 @@ public interface CategoryMapper {
   List<Category> getCategoryList();
 
   Category getCategory(String categoryId);
-
 }

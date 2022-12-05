@@ -19,17 +19,18 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import com.mysql.cj.Session;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 
-import org.mybatis.jpetstore.domain.Cart;
-import org.mybatis.jpetstore.domain.CartItem;
-import org.mybatis.jpetstore.domain.Item;
-import org.mybatis.jpetstore.domain.Product;
+import net.sourceforge.stripes.mock.MockHttpSession;
+import org.mybatis.jpetstore.domain.*;
 import org.mybatis.jpetstore.service.CatalogService;
+import org.mybatis.jpetstore.service.EducationService;
 
 /**
  * The Class CartActionBean.
@@ -43,19 +44,38 @@ public class CartActionBean extends AbstractActionBean {
   private static final String VIEW_CART = "/WEB-INF/jsp/cart/Cart.jsp";
   private static final String VIEW_EDIT = "/WEB-INF/jsp/admin/EditItem.jsp";
   private static final String CHECK_OUT = "/WEB-INF/jsp/cart/Checkout.jsp";
+  private static final String EDU_PAGE = "/WEB-INF/jsp/education/LifeEducation.jsp";
 
   @SpringBean
   private transient CatalogService catalogService;
+  @SpringBean
+  private transient EducationService educationService;
 
   private Cart cart = new Cart();
   private String workingItemId;
   private String productId;
   private List<Item> itemList;
   private Product product;
+  private String CategoryId;
+  private TestResult testResult= new TestResult();
+  private String Username;
   public List<Item> getItemList() {
     return itemList;
   }
 
+
+  public void setCategoryId(String CategoryId){
+    this.CategoryId = CategoryId;
+  }
+  public String getCategoryId(){
+    return CategoryId;
+  }
+  public void setUsername(String Username){
+    this.Username = Username;
+  }
+  public String getUsername(){
+    return Username;
+  }
   public Product getProduct() {
     return product;
   }
@@ -90,7 +110,47 @@ public class CartActionBean extends AbstractActionBean {
    *
    * @return the resolution
    */
-  public Resolution addItemToCart() {
+  public Resolution addItemToCart() { //System.out.println(Username);
+    CategoryId = catalogService.getType(productId);
+    System.out.println(CategoryId);
+    HttpSession s = context.getRequest().getSession();
+    Username = (String)s.getAttribute("UserId");
+    System.out.println(Username);
+
+
+    testResult = educationService.getTestResult(Username);
+
+
+    System.out.println(testResult.getET());
+
+
+    if(testResult.getET() != 1){
+      return new ForwardResolution(EDU_PAGE);
+    }
+    else {
+    switch (CategoryId) {
+      case "FISH":
+        if(testResult.getFI()==0)
+          return new ForwardResolution(EDU_PAGE);
+        break;
+      case "DOGS":
+        if(testResult.getDG()==0)
+          return new ForwardResolution(EDU_PAGE);
+        break;
+      case "CATS":
+        if(testResult.getCT()==0)
+          return new ForwardResolution(EDU_PAGE);
+        break;
+      case "BIRD":
+        if(testResult.getBD()==0)
+          return new ForwardResolution(EDU_PAGE);
+        break;
+      case "REPTILES":
+        if(testResult.getRT()==0)
+          return new ForwardResolution(EDU_PAGE);
+        break;
+    }
+
     if (cart.containsItemId(workingItemId)) {
       cart.incrementQuantityByItemId(workingItemId);
     } else {
@@ -101,8 +161,8 @@ public class CartActionBean extends AbstractActionBean {
       Item item = catalogService.getItem(workingItemId);
       cart.addItem(item, isInStock);
     }
-
     return new ForwardResolution(VIEW_CART);
+    }
   }
 
   /**

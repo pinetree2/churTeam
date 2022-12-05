@@ -6,12 +6,12 @@ public class TestResult implements Serializable {
     private static final long serialVersionUID = -2159121673445254651L;
 
     private String userId;
-    private int et_result=0;
-    private int fish_result=0;
-    private int dog_result=0;
-    private int cat_result=0;
-    private int rep_result=0;
-    private int bird_result=0;
+    private int ET=0;
+    private int FI=0;
+    private int DG=0;
+    private int CT=0;
+    private int RT=0;
+    private int BD=0;
 
     public String getUserId() {
         return userId;
@@ -21,51 +21,51 @@ public class TestResult implements Serializable {
         this.userId = userId;
     }
 
-    public int isEt_result() {
-        return et_result;
+    public int getET() {
+        return ET;
     }
 
-    public void setEt_result(int et_result) {
-        this.et_result = et_result;
+    public void setET(int ET) {
+        this.ET = ET;
     }
 
-    public int isFish_result() {
-        return fish_result;
+    public int getFI() {
+        return FI;
     }
 
-    public void setFish_result(int fish_result) {
-        this.fish_result = fish_result;
+    public void setFI(int FI) {
+        this.FI = FI;
     }
 
-    public int isDog_result() {
-        return dog_result;
+    public int getDG() {
+        return DG;
     }
 
-    public void setDog_result(int dog_result) {
-        this.dog_result = dog_result;
+    public void setDG(int DG) {
+        this.DG = DG;
     }
 
-    public int isCat_result() {
-        return cat_result;
+    public int getCT() {
+        return CT;
     }
 
-    public void setCat_result(int cat_result) {
-        this.cat_result = cat_result;
+    public void setCT(int CT) {
+        this.CT = CT;
     }
 
-    public int isRep_result() {
-        return rep_result;
+    public int getRT() {
+        return RT;
     }
 
-    public void setRep_result(int rep_result) {
-        this.rep_result = rep_result;
+    public void setRT(int RT) {
+        this.RT = RT;
     }
 
-    public int isBird_result() {
-        return bird_result;
+    public int getBD() {
+        return BD;
     }
 
-    public void setBird_result(int bird_result) {
-        this.bird_result = bird_result;
+    public void setBD(int BD) {
+        this.BD = BD;
     }
 }
