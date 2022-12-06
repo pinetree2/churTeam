@@ -122,12 +122,22 @@
 </form>
 <div style="text-align: center;">
     <br>
-    <stripes:link
-            beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
-            event="viewTest">
-        <img src="../images/test_start.png" style="margin-left: auto; margin-right: auto; display: block;"/>
-        <stripes:param name="type" value="ET" />
-    </stripes:link>
+<c:if test="${sessionScope.TestResult.ET==1}">
+<stripes:link
+                beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
+                event="viewChoice">
+            <img src="../images/choose_ani.png" style="margin-left: auto; margin-right: auto; display: block;"/>
+        </stripes:link>
+</c:if>
+
+<c:if test="${sessionScope.TestResult.ET!=1}">
+<stripes:link
+                    beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
+                    event="viewTest">
+                <img src="../images/test_start.png" style="margin-left: auto; margin-right: auto; display: block;"/>
+                <stripes:param name="type" value="ET" />
+            </stripes:link>
+</c:if>
 </div>
 
 </body>
