@@ -27,7 +27,7 @@ public class EducationService {
         return educationMapper.getQuestionList(type);
     }
 
-    public List<Example> getExceptionList(String type) {return educationMapper.getExampleList(type);
+    public List<Example> getExampleList(String type) {return educationMapper.getExampleList(type);
     }
     public TestResult getTestResult(String Username) {
         return educationMapper.getTestResult(Username);

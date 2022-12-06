@@ -35,7 +35,7 @@
         <property name="driverClassName" value="${spring.database.class}" />
         <property name="url" value="${spring.database.host}" />
         <property name="username" value="${spring.database.username}" />
-        <property name="password" value="duatmdqja09" />
+        <property name="password" value="${spring.database.password}" />
     </bean>
 
     <!-- transaction manager, use DataSourceTransactionManager" for JDBC local tx -->

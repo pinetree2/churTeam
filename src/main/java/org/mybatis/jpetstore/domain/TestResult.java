@@ -16,56 +16,25 @@ public class TestResult implements Serializable {
     public String getUserId() {
         return userId;
     }
-
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public int getET() {
-        return ET;
-    }
+    public int getET() {return ET;}
+    public void setET(int ET) {this.ET = ET;}
 
-    public void setET(int ET) {
-        this.ET = ET;
-    }
+    public int getFI() {return FI;}
+    public void setFI(int FI) {this.FI = FI;}
 
-    public int getFI() {
-        return FI;
-    }
+    public int getDG() {return DG;}
+    public void setDG(int DG) {this.DG = DG;}
 
-    public void setFI(int FI) {
-        this.FI = FI;
-    }
+    public int getCT() {return CT;}
+    public void setCT(int CT) {this.CT = CT;}
 
-    public int getDG() {
-        return DG;
-    }
+    public int getRT() {return RT;}
+    public void setRT(int RT) {this.RT = RT;}
 
-    public void setDG(int DG) {
-        this.DG = DG;
-    }
-
-    public int getCT() {
-        return CT;
-    }
-
-    public void setCT(int CT) {
-        this.CT = CT;
-    }
-
-    public int getRT() {
-        return RT;
-    }
-
-    public void setRT(int RT) {
-        this.RT = RT;
-    }
-
-    public int getBD() {
-        return BD;
-    }
-
-    public void setBD(int BD) {
-        this.BD = BD;
-    }
+    public int getBD() {return BD;}
+    public void setBD(int BD) {this.BD = BD;}
 }

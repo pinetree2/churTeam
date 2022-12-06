@@ -49,7 +49,7 @@
 
     <update id="updatePoint" parameterType="TestResult">
         UPDATE testresult
-        SET ET = #{et_result},DG = #{dog_result},BD = #{bird_result},CT = #{cat_result},RT = #{rep_result},FI = #{fish_result}
+        SET ET = #{ET},DG = #{DG},BD = #{BD},CT = #{CT},RT = #{RT},FI = #{FI}
         WHERE userId = #{userId};
     </update>
 

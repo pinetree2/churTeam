@@ -97,7 +97,7 @@
     INSERT INTO ACCOUNT
       (EMAIL, FIRSTNAME, LASTNAME, STATUS, ADDR1, ADDR2, CITY, STATE, ZIP, COUNTRY, PHONE, USERID, auth)
     VALUES
-      (#{email}, #{firstName}, #{lastName}, #{status}, #{address1},  #{address2,jdbcType=VARCHAR}, #{city}, #{state}, #{zip}, #{country}, #{phone}, #{username},1)
+      (#{email}, #{firstName}, #{lastName}, #{status}, #{address1},  #{address2,jdbcType=VARCHAR}, #{city}, #{state}, #{zip}, #{country}, #{phone}, #{username},0)
   </insert>
 
   <update id="updateProfile" parameterType="Account">
@@ -132,7 +132,7 @@
 
   <insert id="insertTestTable">
     INSERT INTO testResult (userId,ET,FI,DG,CT,RT,BD)
-    VALUES (#{userName},NULL,NULL,NULL,NULL,NULL,NULL)
+    VALUES (#{userName},0,0,0,0,0,0)
   </insert>
 
 </mapper>

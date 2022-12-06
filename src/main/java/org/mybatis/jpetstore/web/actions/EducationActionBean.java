@@ -20,6 +20,11 @@ public class EducationActionBean extends AbstractActionBean{
     private static final String VIEW_TEST = "/WEB-INF/jsp/education/Test.jsp";
     private static final String VIEW_RESULT ="/WEB-INF/jsp/education/Result.jsp";
     private static final String VIEW_CHOICE ="/WEB-INF/jsp/education/ChoiceAnimal.jsp";
+    private static final String VIEW_FISH = "/WEB-INF/jsp/education/FishEducation.jsp";
+    private static final String VIEW_DOG = "/WEB-INF/jsp/education/DogEducation.jsp";
+    private static final String VIEW_CAT = "/WEB-INF/jsp/education/CatEducation.jsp";
+    private static final String VIEW_REPTILE = "/WEB-INF/jsp/education/ReptileEducation.jsp";
+    private static final String VIEW_BIRD = "/WEB-INF/jsp/education/BirdEducation.jsp";
 
     @SpringBean
     private transient EducationService educationService;
@@ -37,6 +42,9 @@ public class EducationActionBean extends AbstractActionBean{
     private String point5;
     private String point6;
     private String point7;
+    private String point8;
+    private String point9;
+    private String point10;
     private String tName;
 
     public String gettName() {
@@ -46,8 +54,6 @@ public class EducationActionBean extends AbstractActionBean{
     public void settName(String tName) {
         this.tName = tName;
     }
-
-    public String getPoint() { return point1; }
 
     public String getPoint1() {
         return point1;
@@ -87,6 +93,12 @@ public class EducationActionBean extends AbstractActionBean{
     public void setPoint7(String point7) {
         this.point7 = point7;
     }
+    public String getPoint8() {return point8;}
+    public void setPoint8(String point8) {this.point8 = point8;}
+    public String getPoint9() {return point9;}
+    public void setPoint9(String point9) {this.point9 = point9;}
+    public String getPoint10() {return point10;}
+    public void setPoint10(String point10) {this.point10 = point10;}
 
     public Example getExample() {
         return example;
@@ -135,15 +147,30 @@ public class EducationActionBean extends AbstractActionBean{
     public void setTestResult(TestResult testResult) {
         this.testResult = testResult;
     }
-
+    public void pointclear(){
+        setPoint1(null);
+        setPoint2(null);
+        setPoint3(null);
+        setPoint4(null);
+        setPoint5(null);
+        setPoint6(null);
+        setPoint7(null);
+        setPoint8(null);
+        setPoint9(null);
+        setPoint10(null);
+    };
     @DefaultHandler
     public ForwardResolution viewMain() {
         return new ForwardResolution(MAIN);
     }
 
-    public ForwardResolution viewLifeEducation() {
-        return new ForwardResolution(MAIN);
-    }
+    public ForwardResolution viewLifeEducation() {return new ForwardResolution(MAIN);}
+
+    public ForwardResolution FishEducation() {return  new ForwardResolution(VIEW_FISH);}
+    public ForwardResolution DogEducation() {return  new ForwardResolution(VIEW_DOG);}
+    public ForwardResolution CatEducation() {return  new ForwardResolution(VIEW_CAT);}
+    public ForwardResolution BirdEducation() {return  new ForwardResolution(VIEW_BIRD);}
+    public ForwardResolution ReptileEducation() {return  new ForwardResolution(VIEW_REPTILE);}
 
     /**
      * View Question.
@@ -151,9 +178,10 @@ public class EducationActionBean extends AbstractActionBean{
      * @return the forward resolution
      */
     public ForwardResolution viewTest() {
+        pointclear();
         System.out.println("type = "+type);
         questionList = educationService.getQuestionList(type);
-        exampleList =educationService.getExceptionList(type);
+        exampleList =educationService.getExampleList(type);
         return new ForwardResolution(VIEW_TEST);
     }
 
@@ -178,17 +206,6 @@ public class EducationActionBean extends AbstractActionBean{
          */
 
         int totalPoint =0;
-        System.out.println("---------------"+point1);
-        System.out.println("---------------"+point2);
-        System.out.println("---------------"+point3);
-        System.out.println("---------------"+point4);
-        System.out.println("---------------"+point5);
-        System.out.println("---------------"+point6);
-        System.out.println("---------------"+point7);
-        System.out.println("아이디 = "+tName);
-
-        testResult.setUserId(tName);
-        System.out.println("다시 아이디 = "+testResult.getUserId());
 
         totalPoint += Integer.parseInt(point1);
         totalPoint += Integer.parseInt(point2);
@@ -197,12 +214,16 @@ public class EducationActionBean extends AbstractActionBean{
         totalPoint += Integer.parseInt(point5);
         totalPoint += Integer.parseInt(point6);
         totalPoint += Integer.parseInt(point7);
+        totalPoint += Integer.parseInt(point8);
+        totalPoint += Integer.parseInt(point9);
+        totalPoint += Integer.parseInt(point10);
+
 
         int flag=0;
-        if(type=="ET" && totalPoint>=35) flag=1;
-        else if(type!="ET" && totalPoint>=25) flag=1;
+        testResult = educationService.getTestResult(tName);
 
-
+        if(type=="ET" && totalPoint==50) flag=1;
+        else if(type!="ET" && totalPoint>=40) flag=1;
 
         switch (type) {
             case "ET":
@@ -245,7 +266,9 @@ public class EducationActionBean extends AbstractActionBean{
     public void clear(){
         exampleList = null;
         questionList = null;
-        testResult = null;
+
+
+
     }
 
 }

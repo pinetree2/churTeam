@@ -45,6 +45,11 @@ public class CartActionBean extends AbstractActionBean {
   private static final String VIEW_EDIT = "/WEB-INF/jsp/admin/EditItem.jsp";
   private static final String CHECK_OUT = "/WEB-INF/jsp/cart/Checkout.jsp";
   private static final String EDU_PAGE = "/WEB-INF/jsp/education/LifeEducation.jsp";
+  private static final String VIEW_FISH = "/WEB-INF/jsp/education/FishEducation.jsp";
+  private static final String VIEW_DOG = "/WEB-INF/jsp/education/DogEducation.jsp";
+  private static final String VIEW_CAT = "/WEB-INF/jsp/education/CatEducation.jsp";
+  private static final String VIEW_REPTILE = "/WEB-INF/jsp/education/ReptileEducation.jsp";
+  private static final String VIEW_BIRD = "/WEB-INF/jsp/education/BirdEducation.jsp";
 
   @SpringBean
   private transient CatalogService catalogService;
@@ -111,43 +116,47 @@ public class CartActionBean extends AbstractActionBean {
    * @return the resolution
    */
   public Resolution addItemToCart() { //System.out.println(Username);
+
     CategoryId = catalogService.getType(productId);
     System.out.println(CategoryId);
     HttpSession s = context.getRequest().getSession();
     Username = (String)s.getAttribute("UserId");
     System.out.println(Username);
-
-
     testResult = educationService.getTestResult(Username);
 
-
     System.out.println(testResult.getET());
+    System.out.println(testResult.getDG());
+    System.out.println(testResult.getCT());
+    System.out.println(testResult.getRT());
+    System.out.println(testResult.getFI());
+    System.out.println(testResult.getBD());
 
 
-    if(testResult.getET() != 1){
+
+    if(testResult.getET()!=1){
       return new ForwardResolution(EDU_PAGE);
     }
     else {
     switch (CategoryId) {
       case "FISH":
-        if(testResult.getFI()==0)
-          return new ForwardResolution(EDU_PAGE);
+        if(testResult.getFI()!=1)
+          return new ForwardResolution(VIEW_FISH);
         break;
       case "DOGS":
-        if(testResult.getDG()==0)
-          return new ForwardResolution(EDU_PAGE);
+        if(testResult.getDG()!=1)
+          return new ForwardResolution(VIEW_DOG);
         break;
       case "CATS":
-        if(testResult.getCT()==0)
-          return new ForwardResolution(EDU_PAGE);
+        if(testResult.getCT()!=1)
+          return new ForwardResolution(VIEW_CAT);
         break;
       case "BIRD":
-        if(testResult.getBD()==0)
-          return new ForwardResolution(EDU_PAGE);
+        if(testResult.getBD()!=1)
+          return new ForwardResolution(VIEW_BIRD);
         break;
       case "REPTILES":
-        if(testResult.getRT()==0)
-          return new ForwardResolution(EDU_PAGE);
+        if(testResult.getRT()!=1)
+          return new ForwardResolution(VIEW_REPTILE);
         break;
     }
 
