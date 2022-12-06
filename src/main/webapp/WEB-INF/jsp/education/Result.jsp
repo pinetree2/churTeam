@@ -64,31 +64,46 @@
 <body>
 <br>
 <br>
+<c:if test="${sessionScope.educationBean.type=='ET'}"><c:set var="flag" value="${sessionScope.educationBean.testResult.ET}"/></c:if>
+<c:if test="${sessionScope.educationBean.type=='DG'}"><c:set var="flag" value="${sessionScope.educationBean.testResult.DG}"/></c:if>
+<c:if test="${sessionScope.educationBean.type=='FI'}"><c:set var="flag" value="${sessionScope.educationBean.testResult.FI}"/></c:if>
+<c:if test="${sessionScope.educationBean.type=='CT'}"><c:set var="flag" value="${sessionScope.educationBean.testResult.CT}"/></c:if>
+<c:if test="${sessionScope.educationBean.type=='BD'}"><c:set var="flag" value="${sessionScope.educationBean.testResult.BD}"/></c:if>
+<c:if test="${sessionScope.educationBean.type=='RT'}"><c:set var="flag" value="${sessionScope.educationBean.testResult.RT}"/></c:if>
 
-<c:if test="${sessionScope.educationBean.testResult.getET()==1}">
+<c:if test="${flag==1}">
     <img src="../images/pass.png" style="width: 960px; height: 540px; margin-left: auto; margin-right: auto; display: block;"/>
-<stripes:link
+
+    <c:if test="${sessionScope.educationBean.type=='ET'}">
+    <stripes:link
         beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
         event="viewChoice">
     <img src="../images/choose_ani.png" style="margin-left: auto; margin-right: auto; display: block;"/>
-</stripes:link>
+    </stripes:link>
+    </c:if>
+    <c:if test="${sessionScope.educationBean.type!='ET'}">
+        <div style="text-align: center">이제 동물을 카트에 담으실 수 있습니다.</div>
+    </c:if>
 </c:if>
 
-<c:if test="${sessionScope.educationBean.testResult.getET()==0}">
+<c:if test="${flag==0}">
     <img src="../images/fail.png" style="width: 960px; height: 540px; margin-left: auto; margin-right: auto; display: block;"/>
+    <c:if test="${sessionScope.educationBean.type=='ET'}">
     <stripes:link
         beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
         event="viewTest">
     <img src="../images/ethic_re_edu.png" style="margin-left: auto; margin-right: auto; display: block;"/>
     <stripes:param name="type" value="ET" />
 </stripes:link>
+    </c:if>
 </c:if>
+<c:if test="${flag==0&&sessionScope.educationBean.type!='ET'}">
 <stripes:link
         beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
         event="Choice">
     <img src="../images/ani_re_edu.png" style="margin-left: auto; margin-right: auto; display: block;"/>
 </stripes:link>
-
+</c:if>
 <stripes:link
         beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
         event="viewMain">

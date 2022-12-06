@@ -224,7 +224,7 @@ public class EducationActionBean extends AbstractActionBean{
 
         if(type=="ET" && totalPoint==50) flag=1;
         else if(type!="ET" && totalPoint>=40) flag=1;
-
+        System.out.println(flag);
         switch (type) {
             case "ET":
                 testResult.setET(flag);
@@ -262,7 +262,26 @@ public class EducationActionBean extends AbstractActionBean{
     public ForwardResolution viewChoice(){
         return new ForwardResolution(VIEW_CHOICE);
     }
+    public ForwardResolution Choice(){
+        switch (type) {
+            case "DG":
+                return new ForwardResolution(VIEW_DOG);
 
+            case "CT":
+                return new ForwardResolution(VIEW_CAT);
+
+            case "FI":
+                return new ForwardResolution(VIEW_FISH);
+
+            case "BD":
+                return new ForwardResolution(VIEW_BIRD);
+
+            case "RT":
+                return new ForwardResolution(VIEW_REPTILE);
+
+        }
+        return new ForwardResolution(MAIN);
+    }
     public void clear(){
         exampleList = null;
         questionList = null;
