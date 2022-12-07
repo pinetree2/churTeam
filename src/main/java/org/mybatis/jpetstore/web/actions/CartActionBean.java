@@ -50,6 +50,8 @@ public class CartActionBean extends AbstractActionBean {
   private static final String VIEW_CAT = "/WEB-INF/jsp/education/CatEducation.jsp";
   private static final String VIEW_REPTILE = "/WEB-INF/jsp/education/ReptileEducation.jsp";
   private static final String VIEW_BIRD = "/WEB-INF/jsp/education/BirdEducation.jsp";
+  private static final String SIGNON = "/WEB-INF/jsp/account/SignonForm.jsp";
+
 
   @SpringBean
   private transient CatalogService catalogService;
@@ -116,10 +118,10 @@ public class CartActionBean extends AbstractActionBean {
    * @return the resolution
    */
   public Resolution addItemToCart() { //System.out.println(Username);
-
+    HttpSession s = context.getRequest().getSession();
+    if(s.getAttribute("accountBean")==null) return new ForwardResolution(SIGNON);
     CategoryId = catalogService.getType(productId);
     System.out.println(CategoryId);
-    HttpSession s = context.getRequest().getSession();
     Username = (String)s.getAttribute("UserId");
     System.out.println(Username);
     testResult = educationService.getTestResult(Username);

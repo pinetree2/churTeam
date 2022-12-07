@@ -175,7 +175,7 @@ public class AccountActionBean extends AbstractActionBean {
       s.setAttribute("accountBean", this);
       s.setAttribute("principalAuth", account.getAuth());
       s.setAttribute("UserId", account.getUsername());
-
+      System.out.println(getUsername());
       return new RedirectResolution(CatalogActionBean.class);
     }
   }

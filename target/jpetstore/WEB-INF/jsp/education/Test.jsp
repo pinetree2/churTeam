@@ -72,7 +72,7 @@
 <%--<c:forEach var="" items="${}">
 </c:forEach>--%>
 <title> 정답 입력 </title>
-<table>
+<table style="width: 90%">
     <c:forEach var="question" items="${actionBean.questionList}">
         <tr>
             <td>${question.queNo}</td>

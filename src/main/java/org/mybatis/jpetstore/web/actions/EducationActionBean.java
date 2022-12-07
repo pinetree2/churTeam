@@ -166,7 +166,6 @@ public class EducationActionBean extends AbstractActionBean{
 
     public ForwardResolution viewLifeEducation() {
         HttpSession s = context.getRequest().getSession();
-
         s.setAttribute("TestResult",educationService.getTestResult((String)s.getAttribute("UserId")));
         return new ForwardResolution(MAIN);
     }
@@ -213,7 +212,10 @@ public class EducationActionBean extends AbstractActionBean{
          * 링크로는 동물 페이지 못넘어가게.
          *
          */
-
+        String[] points = {point1,point2,point3,point4,point5,point6,point7,point8,point9,point10};
+        for(int i=0;i<points.length;i++){
+            if(points[i] == null)return new ForwardResolution(VIEW_TEST);
+        }
         int totalPoint =0;
 
         totalPoint += Integer.parseInt(point1);

@@ -16,42 +16,79 @@
 
 --%>
 <%@ include file="../common/IncludeTop.jsp"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div id="BackLink"><stripes:link
-	beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean">
+		beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean">
 	Return to Main Menu</stripes:link></div>
 
 <div id="Catalog">
 
-<h2>${actionBean.category.name}</h2>
+	<h2>${actionBean.category.name}</h2>
+	<c:if test="${actionBean.category.name=='Dogs'}">
+		<div style="text-align: center">
+			<stripes:link
+					beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
+					event="DogEducation">
+				<img src="../images/dog_btn.png" style="margin-left: auto; margin-right: auto; display: block;"/>
+			</stripes:link>
+		</div>
+	</c:if>
+	<c:if test="${actionBean.category.name=='Cats'}">
+		<div style="text-align: center">
+			<stripes:link
+					beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
+					event="CatEducation">
+				<img src="../images/cat_btn.png" style="margin-left: auto; margin-right: auto; display: block;"/>
+			</stripes:link>
+		</div>
+	</c:if>
+	<c:if test="${actionBean.category.name=='Fish'}">
+		<div style="text-align: center">
+			<stripes:link
+					beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
+					event="FishEducation">
+				<img src="../images/fish_btn.png" style="margin-left: auto; margin-right: auto; display: block;"/>
+			</stripes:link>
+		</div>
+	</c:if>
+	<c:if test="${actionBean.category.name=='Birds'}">
+		<div style="text-align: center">
+			<stripes:link
+					beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
+					event="BirdEducation">
+				<img src="../images/bird_btn.png" style="margin-left: auto; margin-right: auto; display: block;"/>
+			</stripes:link>
+		</div>
+	</c:if>
 
-<table>
-	<tr>
-		<th>Product ID</th>
-		<th>Name</th>
-	</tr>
-	<c:forEach var="product" items="${actionBean.productList}">
+	<c:if test="${actionBean.category.name=='Reptiles'}">
+		<div style="text-align: center">
+			<stripes:link
+					beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
+					event="ReptileEducation">
+				<img src="../images/reptile_btn.png" style="margin-left: auto; margin-right: auto; display: block;"/>
+			</stripes:link>
+		</div>
+	</c:if>
+
+
+	<table>
 		<tr>
-			<td><stripes:link
-				beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
-				event="viewProduct">
-				<stripes:param name="productId" value="${product.productId}" />
-				${product.productId}
-			</stripes:link></td>
-			<td>${product.name}</td>
+			<th>Product ID</th>
+			<th>Name</th>
 		</tr>
-	</c:forEach>
-</table>
-	<stripes:link
-			class="Button"
-			beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
-			event="categoryAPI">
-		<stripes:param name="categoryId" value="${actionBean.category.name}" />
-		View API
-	</stripes:link>
-
+		<c:forEach var="product" items="${actionBean.productList}">
+			<tr>
+				<td><stripes:link
+						beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+						event="viewProduct">
+					<stripes:param name="productId" value="${product.productId}" />
+					${product.productId}
+				</stripes:link></td>
+				<td>${product.name}</td>
+			</tr>
+		</c:forEach>
+	</table>
 </div>
 
 <%@ include file="../common/IncludeBottom.jsp"%>
-
-

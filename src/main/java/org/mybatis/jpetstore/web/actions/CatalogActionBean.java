@@ -190,9 +190,13 @@ public class CatalogActionBean extends AbstractActionBean {
    * @return the forward resolution
    */
   public ForwardResolution viewItem() {
+
+
     item = catalogService.getItem(itemId);
     product = item.getProduct();
+    if(item==null || product==null) return new ForwardResolution(UPDATE_ITEM);
     return new ForwardResolution(VIEW_ITEM);
+
   }
 
   /**
@@ -255,6 +259,7 @@ public class CatalogActionBean extends AbstractActionBean {
         itemList = catalogService.getItemListByProduct(productId);
         product = catalogService.getProduct(productId);
       }
+
       return new RedirectResolution("/actions/Cart.action?editItem").addParameter("productId",productId);
     }
   }

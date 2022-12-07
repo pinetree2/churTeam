@@ -96,6 +96,7 @@
 						event="viewAllProduct">
 					Admin Dashboard
 				</stripes:link>
+				<img align="middle" src="../images/separator.gif" />
 			</c:if>
 			<stripes:link
 					beanclass="org.mybatis.jpetstore.web.actions.EducationActionBean"
