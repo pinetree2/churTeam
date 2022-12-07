@@ -54,13 +54,17 @@
 			pattern="$#,##0.00" /></td>
 	</tr>
 
+
 	<tr>
 		<td><stripes:link class="Button"
 			beanclass="org.mybatis.jpetstore.web.actions.CartActionBean"
 			event="addItemToCart">
 			<stripes:param name="workingItemId" value="${actionBean.item.itemId}" />
+			<stripes:param name="productId" value="${actionBean.product.productId}" />
+			<stripes:param name="Username" value="${sessionScope.accountBean.username}"/>
        	Add to Cart
        </stripes:link></td>
+
 	</tr>
 </table>
 

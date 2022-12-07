@@ -15,6 +15,7 @@
  */
 package org.mybatis.jpetstore.web.actions;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -190,9 +191,12 @@ public class CatalogActionBean extends AbstractActionBean {
    * @return the forward resolution
    */
   public ForwardResolution viewItem() {
+
+
     item = catalogService.getItem(itemId);
     product = item.getProduct();
     return new ForwardResolution(VIEW_ITEM);
+
   }
 
   /**
@@ -230,11 +234,29 @@ public class CatalogActionBean extends AbstractActionBean {
 
     if(auth == null || auth.equals("0")){
       return new RedirectResolution(CatalogActionBean.class);
-    }else{
-      catalogService.insertItem(item);
-      return new RedirectResolution("/actions/Cart.action?editItem").addParameter("productId",productId);
     }
+    else{
+      if (item.getItemId()!=null) {
+        catalogService.insertItem(item);
+        return new RedirectResolution("/actions/Cart.action?editItem").addParameter("productId",productId);
+      }
+      else{
+        alert(context.getResponse(), "값이 입력되지않았습니다.","/churTeam_YeomSB_war/actions/Catalog.action?viewAllProduct");
+      }
+    }
+    return new RedirectResolution("/actions/Cart.action?editItem").addParameter("productId",productId);
+  }
 
+  public static void alert(HttpServletResponse response, String msg, String url) {
+    try {
+      response.setContentType("text/html; charset=utf-8");
+      PrintWriter w = response.getWriter();
+      w.write("<script>alert('"+msg+"');location.href='"+url+"';</script>");
+      w.flush();
+      w.close();
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -255,6 +277,7 @@ public class CatalogActionBean extends AbstractActionBean {
         itemList = catalogService.getItemListByProduct(productId);
         product = catalogService.getProduct(productId);
       }
+
       return new RedirectResolution("/actions/Cart.action?editItem").addParameter("productId",productId);
     }
   }

@@ -25,7 +25,7 @@ public class EducationActionBean extends AbstractActionBean{
     private static final String VIEW_CAT = "/WEB-INF/jsp/education/CatEducation.jsp";
     private static final String VIEW_REPTILE = "/WEB-INF/jsp/education/ReptileEducation.jsp";
     private static final String VIEW_BIRD = "/WEB-INF/jsp/education/BirdEducation.jsp";
-
+    private static final String SIGNON = "/WEB-INF/jsp/account/SignonForm.jsp";
     @SpringBean
     private transient EducationService educationService;
 
@@ -164,7 +164,11 @@ public class EducationActionBean extends AbstractActionBean{
         return new ForwardResolution(MAIN);
     }
 
-    public ForwardResolution viewLifeEducation() {return new ForwardResolution(MAIN);}
+    public ForwardResolution viewLifeEducation() {
+        HttpSession s = context.getRequest().getSession();
+        s.setAttribute("TestResult",educationService.getTestResult((String)s.getAttribute("UserId")));
+        return new ForwardResolution(MAIN);
+    }
 
     public ForwardResolution FishEducation() {return  new ForwardResolution(VIEW_FISH);}
     public ForwardResolution DogEducation() {return  new ForwardResolution(VIEW_DOG);}
@@ -178,11 +182,15 @@ public class EducationActionBean extends AbstractActionBean{
      * @return the forward resolution
      */
     public ForwardResolution viewTest() {
-        pointclear();
-        System.out.println("type = "+type);
-        questionList = educationService.getQuestionList(type);
-        exampleList =educationService.getExampleList(type);
-        return new ForwardResolution(VIEW_TEST);
+
+        HttpSession s = context.getRequest().getSession();
+        if(s.getAttribute("accountBean")==null) return new ForwardResolution(SIGNON);
+        else {
+            pointclear();
+            System.out.println("type = " + type);
+            questionList = educationService.getQuestionList(type);
+            exampleList = educationService.getExampleList(type);
+            return new ForwardResolution(VIEW_TEST);}
     }
 
     public ForwardResolution viewResult(){
@@ -204,7 +212,10 @@ public class EducationActionBean extends AbstractActionBean{
          * 링크로는 동물 페이지 못넘어가게.
          *
          */
-
+        String[] points = {point1,point2,point3,point4,point5,point6,point7,point8,point9,point10};
+        for(int i=0;i<points.length;i++){
+            if(points[i] == null)return new ForwardResolution(VIEW_TEST);
+        }
         int totalPoint =0;
 
         totalPoint += Integer.parseInt(point1);
@@ -250,6 +261,7 @@ public class EducationActionBean extends AbstractActionBean{
 
         educationService.updatePoint(testResult);
         HttpSession s = context.getRequest().getSession();
+
         s.setAttribute("educationBean", this);
         return new ForwardResolution(VIEW_RESULT);
     }
