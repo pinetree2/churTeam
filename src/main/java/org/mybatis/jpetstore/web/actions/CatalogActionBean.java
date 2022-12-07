@@ -194,7 +194,6 @@ public class CatalogActionBean extends AbstractActionBean {
 
     item = catalogService.getItem(itemId);
     product = item.getProduct();
-    if(item==null || product==null) return new ForwardResolution(UPDATE_ITEM);
     return new ForwardResolution(VIEW_ITEM);
 
   }
