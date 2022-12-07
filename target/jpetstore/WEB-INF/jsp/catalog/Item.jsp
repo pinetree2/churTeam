@@ -16,6 +16,8 @@
 
 --%>
 <%@ include file="../common/IncludeTop.jsp"%>
+<%--<jsp:useBean id="catalog"--%>
+<%--			 class="org.mybatis.jpetstore.web.actions.CatalogActionBean" />--%>
 
 <div id="BackLink"><stripes:link
 	beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
@@ -54,13 +56,17 @@
 			pattern="$#,##0.00" /></td>
 	</tr>
 
+
 	<tr>
 		<td><stripes:link class="Button"
 			beanclass="org.mybatis.jpetstore.web.actions.CartActionBean"
 			event="addItemToCart">
 			<stripes:param name="workingItemId" value="${actionBean.item.itemId}" />
+			<stripes:param name="productId" value="${actionBean.product.productId}" />
+			<stripes:param name="Username" value="${sessionScope.accountBean.username}"/>
        	Add to Cart
        </stripes:link></td>
+
 	</tr>
 </table>
 
